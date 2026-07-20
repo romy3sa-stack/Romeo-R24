@@ -1,0 +1,28 @@
+name: receipt24_accountant
+description: Receipt24 Accountant Portal — client receipt management for professionals.
+publish_to: none
+version: 0.1.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  supabase_flutter: ^2.8.0
+  go_router: ^14.2.0
+  flutter_riverpod: ^2.5.1
+  receipt24_shared:
+    path: ../../packages/receipt24_shared
+  flutter_dotenv: ^5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - .env
