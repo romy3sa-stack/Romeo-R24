@@ -333,6 +333,7 @@ begin
     case when new.email_confirmed_at is null then 'pending' else 'active' end,
     new.email_confirmed_at is not null
   );
+  insert into public.consumer_profiles (user_id) values (new.id);
   return new;
 end;
 $$;
