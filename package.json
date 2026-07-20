@@ -1,0 +1,18 @@
+{
+  "name": "receipt24",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Receipt24 — Every Receipt. One Place.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "typecheck:shared": "npm run typecheck --workspace @receipt24/shared",
+    "validate:foundation": "bash scripts/validate-foundation.sh",
+    "docs:list": "ls -1 docs/architecture docs/testing",
+    "schema:list": "ls -1 supabase/migrations"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

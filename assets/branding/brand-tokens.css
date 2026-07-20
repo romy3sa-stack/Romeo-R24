@@ -1,0 +1,26 @@
+:root {
+  /* Receipt24 brand tokens — Phase 15 */
+  --r24-navy: #0b1b48;
+  --r24-navy-deep: #07122f;
+  --r24-navy-soft: #152a5c;
+  --r24-action: #0ea5e9;
+  --r24-action-strong: #0284c7;
+  --r24-success: #22c55e;
+  --r24-warning: #f59e0b;
+  --r24-error: #ef4444;
+  --r24-bg: #f5f7fb;
+  --r24-surface: #ffffff;
+  --r24-border: #d7deea;
+  --r24-text: #0b1b48;
+  --r24-text-muted: #5b6b86;
+  --r24-radius-card: 16px;
+  --r24-font-sans: "Manrope", "DM Sans", "Inter", system-ui, sans-serif;
+}
+
+[data-theme="dark"] {
+  --r24-bg: #07122f;
+  --r24-surface: #0f1f4a;
+  --r24-border: #24365f;
+  --r24-text: #f5f7fb;
+  --r24-text-muted: #a8b4cc;
+}
