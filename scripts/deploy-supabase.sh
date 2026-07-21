@@ -46,7 +46,7 @@ deploy_functions() {
   echo "==> Deploying edge functions..."
   for fn in "${FUNCTIONS[@]}"; do
     echo "    Deploying $fn..."
-  if [[ "$fn" == "stripe-webhook" ]]; then
+    if [[ "$fn" == "stripe-webhook" ]]; then
       supabase functions deploy "$fn" --no-verify-jwt
     else
       supabase functions deploy "$fn"
