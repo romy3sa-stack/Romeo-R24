@@ -1,0 +1,20 @@
+{
+  "name": "receipt24",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Receipt24 shared platform foundation",
+  "scripts": {
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:lint": "supabase db lint --local --level error",
+    "db:test": "supabase test db",
+    "test": "npm run db:lint && npm run db:test"
+  },
+  "devDependencies": {
+    "supabase": "latest"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
