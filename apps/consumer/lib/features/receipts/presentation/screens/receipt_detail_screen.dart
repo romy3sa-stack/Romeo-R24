@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:receipt24_shared/receipt24_shared.dart';
 
 import '../../../../core/l10n/locale_provider.dart';
+import '../../../expenses/presentation/widgets/expense_classification_card.dart';
 import '../../providers/receipt_providers.dart';
 
 class ReceiptDetailScreen extends ConsumerWidget {
@@ -38,6 +40,10 @@ class ReceiptDetailScreen extends ConsumerWidget {
                     leading: const Icon(Icons.warning_amber,
                         color: Color(Receipt24Colors.warning)),
                     title: Text(l10n.duplicateWarning),
+                    trailing: TextButton(
+                      onPressed: () => context.push('/receipts/duplicates'),
+                      child: Text(l10n.duplicateAlerts),
+                    ),
                   ),
                 ),
               _DetailTile(
@@ -71,27 +77,23 @@ class ReceiptDetailScreen extends ConsumerWidget {
                   value: receipt.paymentMethod!,
                 ),
               const Divider(),
+              ExpenseClassificationCard(
+                receiptId: receiptId,
+                merchantName: receipt.merchantNameRaw,
+                items: receipt.items,
+                initialClassification: receipt.expenseClassification,
+              ),
+              const Divider(),
               Text(l10n.itemsPurchased,
                   style: Theme.of(context).textTheme.titleSmall),
               ...receipt.items.map((item) => ListTile(
                     title: Text(item.itemName),
                     subtitle: Text('Qty: ${item.quantity}'),
-                    trailing: Text(
-                        item.totalPrice?.toStringAsFixed(2) ?? '—'),
+                    trailing:
+                        Text(item.totalPrice?.toStringAsFixed(2) ?? '—'),
                   )),
               if (receipt.notes != null)
                 _DetailTile(label: 'Notes', value: receipt.notes!),
-              const SizedBox(height: Receipt24Spacing.lg),
-              Wrap(
-                spacing: Receipt24Spacing.sm,
-                runSpacing: Receipt24Spacing.sm,
-                children: [
-                  _ActionChip(label: 'Share', icon: Icons.share),
-                  _ActionChip(label: 'Export', icon: Icons.download),
-                  _ActionChip(label: 'Personal', icon: Icons.person),
-                  _ActionChip(label: 'Business', icon: Icons.business),
-                ],
-              ),
             ],
           );
         },
@@ -119,28 +121,10 @@ class _DetailTile extends StatelessWidget {
                     color: Color(Receipt24Colors.textSecondary))),
           ),
           Expanded(
-              child: Text(value, style: const TextStyle(fontWeight: FontWeight.w500))),
+              child: Text(value,
+                  style: const TextStyle(fontWeight: FontWeight.w500))),
         ],
       ),
-    );
-  }
-}
-
-class _ActionChip extends StatelessWidget {
-  const _ActionChip({required this.label, required this.icon});
-  final String label;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return ActionChip(
-      avatar: Icon(icon, size: 18),
-      label: Text(label),
-      onPressed: () {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('$label — coming in next phase')),
-        );
-      },
     );
   }
 }

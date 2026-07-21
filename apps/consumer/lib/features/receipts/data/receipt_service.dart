@@ -20,7 +20,10 @@ class ReceiptService {
   }) async {
     var query = _client
         .from('receipts')
-        .select('*, receipt_categories(category_name)')
+        .select(
+          '*, receipt_categories(category_name), '
+          'receipt_expense_classification(*, expense_categories(category_name))',
+        )
         .eq('consumer_user_id', userId)
         .isFilter('soft_deleted_at', null);
 
@@ -60,7 +63,7 @@ class ReceiptService {
 
     final rows = await query.order(orderColumn, ascending: ascending).limit(limit);
     var receipts = (rows as List)
-        .map((r) => ReceiptModel.fromJson(r as Map<String, dynamic>))
+        .map((r) => _parseReceiptRow(r as Map<String, dynamic>))
         .toList();
 
     if (filter.searchQuery.isNotEmpty) {
@@ -83,23 +86,35 @@ class ReceiptService {
           .toList();
     }
 
+    if (filter.expenseType != null) {
+      receipts = receipts.where((r) {
+        final type = r.expenseClassification?.expenseType ?? 'personal';
+        return type == filter.expenseType;
+      }).toList();
+    }
+
+    if (filter.expenseCategoryId != null) {
+      receipts = receipts.where((r) {
+        return r.expenseClassification?.expenseCategoryId ==
+            filter.expenseCategoryId;
+      }).toList();
+    }
+
     return receipts;
   }
 
-  Future<ReceiptModel?> fetchReceipt(String receiptId) async {
-    final row = await _client
-        .from('receipts')
-        .select('*, receipt_categories(category_name)')
-        .eq('id', receiptId)
-        .maybeSingle();
-    if (row == null) return null;
+  ReceiptModel _parseReceiptRow(Map<String, dynamic> json) {
+    ExpenseClassificationModel? classification;
+    final classData = json['receipt_expense_classification'];
+    if (classData is Map<String, dynamic>) {
+      classification = ExpenseClassificationModel.fromJson(classData);
+    } else if (classData is List && classData.isNotEmpty) {
+      classification = ExpenseClassificationModel.fromJson(
+        classData.first as Map<String, dynamic>,
+      );
+    }
 
-    final items = await _client
-        .from('receipt_items')
-        .select()
-        .eq('receipt_id', receiptId);
-
-    final receipt = ReceiptModel.fromJson(row);
+    final receipt = ReceiptModel.fromJson(json);
     return ReceiptModel(
       id: receipt.id,
       consumerUserId: receipt.consumerUserId,
@@ -127,6 +142,59 @@ class ReceiptService {
       returnDeadline: receipt.returnDeadline,
       notes: receipt.notes,
       isDuplicateFlagged: receipt.isDuplicateFlagged,
+      duplicateOfReceiptId: receipt.duplicateOfReceiptId,
+      expenseClassification: classification,
+      items: receipt.items,
+      createdAt: receipt.createdAt,
+    );
+  }
+
+  Future<ReceiptModel?> fetchReceipt(String receiptId) async {
+    final row = await _client
+        .from('receipts')
+        .select(
+          '*, receipt_categories(category_name), '
+          'receipt_expense_classification(*, expense_categories(category_name))',
+        )
+        .eq('id', receiptId)
+        .maybeSingle();
+    if (row == null) return null;
+
+    final items = await _client
+        .from('receipt_items')
+        .select()
+        .eq('receipt_id', receiptId);
+
+    final receipt = _parseReceiptRow(row);
+    return ReceiptModel(
+      id: receipt.id,
+      consumerUserId: receipt.consumerUserId,
+      merchantId: receipt.merchantId,
+      merchantNameRaw: receipt.merchantNameRaw,
+      receiptNumber: receipt.receiptNumber,
+      transactionReference: receipt.transactionReference,
+      transactionDate: receipt.transactionDate,
+      subtotal: receipt.subtotal,
+      taxAmount: receipt.taxAmount,
+      discountAmount: receipt.discountAmount,
+      totalAmount: receipt.totalAmount,
+      currency: receipt.currency,
+      paymentMethod: receipt.paymentMethod,
+      receiptSource: receipt.receiptSource,
+      receiptStatus: receipt.receiptStatus,
+      receiptFileUrl: receipt.receiptFileUrl,
+      receiptImageUrl: receipt.receiptImageUrl,
+      receiptCategoryId: receipt.receiptCategoryId,
+      categoryName: receipt.categoryName,
+      ocrStatus: receipt.ocrStatus,
+      ocrConfidenceScore: receipt.ocrConfidenceScore,
+      verificationStatus: receipt.verificationStatus,
+      warrantyAvailable: receipt.warrantyAvailable,
+      returnDeadline: receipt.returnDeadline,
+      notes: receipt.notes,
+      isDuplicateFlagged: receipt.isDuplicateFlagged,
+      duplicateOfReceiptId: receipt.duplicateOfReceiptId,
+      expenseClassification: receipt.expenseClassification,
       items: (items as List)
           .map((i) => ReceiptItemModel.fromJson(i as Map<String, dynamic>))
           .toList(),

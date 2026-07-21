@@ -7,6 +7,7 @@ import 'package:receipt24_shared/receipt24_shared.dart';
 import '../../../../core/auth/auth_providers.dart';
 import '../../../../core/l10n/locale_provider.dart';
 import '../../../../core/widgets/receipt24_widgets.dart';
+import '../../../expenses/providers/expense_providers.dart';
 import '../../providers/receipt_providers.dart';
 
 class ReceiptReviewScreen extends ConsumerStatefulWidget {
@@ -85,7 +86,7 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
 
     setState(() => _isSaving = true);
     try {
-      await ref.read(receiptServiceProvider).saveReceipt(
+      final saved = await ref.read(receiptServiceProvider).saveReceipt(
             userId: user.id,
             extraction: _buildExtraction(),
             receiptSource: pending.receiptSource,
@@ -93,6 +94,14 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
             pdfPath: pending.pdfPath,
             uploadId: pending.uploadId,
           );
+
+      await ref.read(expenseServiceProvider).autoClassifyReceipt(
+            receiptId: saved.id,
+            userId: user.id,
+            merchantName: _merchantController.text.trim(),
+            items: _items,
+          );
+
       ref.read(pendingCaptureProvider.notifier).state = null;
       ref.invalidate(receiptsListProvider);
       ref.invalidate(homeStatsProvider);

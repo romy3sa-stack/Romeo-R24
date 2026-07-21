@@ -143,6 +143,21 @@ class AppLocalizations {
   String get qrScanTitle => t(L10nKeys.qrScanTitle);
   String get qrScanHint => t(L10nKeys.qrScanHint);
   String get qrResult => t(L10nKeys.qrResult);
+  String get expenseCategory => t(L10nKeys.expenseCategory);
+  String get expenseType => t(L10nKeys.expenseType);
+  String get personal => t(L10nKeys.personal);
+  String get business => t(L10nKeys.business);
+  String get mixedUse => t(L10nKeys.mixedUse);
+  String get businessPercentage => t(L10nKeys.businessPercentage);
+  String get suggestedCategory => t(L10nKeys.suggestedCategory);
+  String get saveClassification => t(L10nKeys.saveClassification);
+  String get classificationSaved => t(L10nKeys.classificationSaved);
+  String get duplicateAlerts => t(L10nKeys.duplicateAlerts);
+  String get noDuplicates => t(L10nKeys.noDuplicates);
+  String get notDuplicate => t(L10nKeys.notDuplicate);
+  String get viewReceipt => t(L10nKeys.viewReceipt);
+  String get filterByExpenseType => t(L10nKeys.filterByExpenseType);
+  String get allTypes => t(L10nKeys.allTypes);
 
   static final Map<String, Map<String, String>> _translations = {
     'en': _en,
@@ -283,6 +298,21 @@ const _en = {
   'qrScanTitle': 'Scan QR code',
   'qrScanHint': 'Point your camera at a QR code on the receipt',
   'qrResult': 'QR code detected',
+  'expenseCategory': 'Expense category',
+  'expenseType': 'Expense type',
+  'personal': 'Personal',
+  'business': 'Business',
+  'mixedUse': 'Mixed use',
+  'businessPercentage': 'Business use',
+  'suggestedCategory': 'Suggested category',
+  'saveClassification': 'Save classification',
+  'classificationSaved': 'Classification saved',
+  'duplicateAlerts': 'Duplicate alerts',
+  'noDuplicates': 'No duplicate receipts found',
+  'notDuplicate': 'Not a duplicate',
+  'viewReceipt': 'View receipt',
+  'filterByExpenseType': 'Filter by expense type',
+  'allTypes': 'All types',
 };
 
 const _fr = {

@@ -7,6 +7,7 @@ import '../../../../core/auth/auth_providers.dart';
 import '../../../../core/l10n/locale_provider.dart';
 import '../../../../core/utils/form_validators.dart';
 import '../../../../core/widgets/receipt24_widgets.dart';
+import '../../../expenses/providers/expense_providers.dart';
 import '../../providers/receipt_providers.dart';
 
 class ManualEntryScreen extends ConsumerStatefulWidget {
@@ -60,10 +61,16 @@ class _ManualEntryScreenState extends ConsumerState<ManualEntryScreen> {
         confidenceScore: 100,
       );
 
-      await ref.read(receiptServiceProvider).saveReceipt(
+      final saved = await ref.read(receiptServiceProvider).saveReceipt(
             userId: user.id,
             extraction: extraction,
             receiptSource: 'manual_entry',
+          );
+
+      await ref.read(expenseServiceProvider).autoClassifyReceipt(
+            receiptId: saved.id,
+            userId: user.id,
+            merchantName: _merchantController.text.trim(),
           );
 
       ref.invalidate(receiptsListProvider);

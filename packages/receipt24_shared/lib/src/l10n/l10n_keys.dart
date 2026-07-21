@@ -125,4 +125,21 @@ abstract final class L10nKeys {
   static const qrScanTitle = 'qrScanTitle';
   static const qrScanHint = 'qrScanHint';
   static const qrResult = 'qrResult';
+
+  // Expense management
+  static const expenseCategory = 'expenseCategory';
+  static const expenseType = 'expenseType';
+  static const personal = 'personal';
+  static const business = 'business';
+  static const mixedUse = 'mixedUse';
+  static const businessPercentage = 'businessPercentage';
+  static const suggestedCategory = 'suggestedCategory';
+  static const saveClassification = 'saveClassification';
+  static const classificationSaved = 'classificationSaved';
+  static const duplicateAlerts = 'duplicateAlerts';
+  static const noDuplicates = 'noDuplicates';
+  static const notDuplicate = 'notDuplicate';
+  static const viewReceipt = 'viewReceipt';
+  static const filterByExpenseType = 'filterByExpenseType';
+  static const allTypes = 'allTypes';
 }

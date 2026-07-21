@@ -27,6 +27,8 @@ class ReceiptModel {
     this.returnDeadline,
     this.notes,
     this.isDuplicateFlagged = false,
+    this.duplicateOfReceiptId,
+    this.expenseClassification,
     this.items = const [],
     this.createdAt,
   });
@@ -57,6 +59,8 @@ class ReceiptModel {
   final DateTime? returnDeadline;
   final String? notes;
   final bool isDuplicateFlagged;
+  final String? duplicateOfReceiptId;
+  final ExpenseClassificationModel? expenseClassification;
   final List<ReceiptItemModel> items;
   final DateTime? createdAt;
 
@@ -96,6 +100,7 @@ class ReceiptModel {
           : null,
       notes: json['notes'] as String?,
       isDuplicateFlagged: json['is_duplicate_flagged'] as bool? ?? false,
+      duplicateOfReceiptId: json['duplicate_of_receipt_id'] as String?,
       createdAt: json['created_at'] != null
           ? DateTime.parse(json['created_at'] as String)
           : null,
@@ -244,6 +249,7 @@ class ReceiptFilter {
     this.warrantyOnly = false,
     this.taxRelevantOnly = false,
     this.expenseType,
+    this.expenseCategoryId,
   });
 
   final String searchQuery;
@@ -258,6 +264,7 @@ class ReceiptFilter {
   final bool warrantyOnly;
   final bool taxRelevantOnly;
   final String? expenseType;
+  final String? expenseCategoryId;
 
   ReceiptFilter copyWith({
     String? searchQuery,
@@ -272,6 +279,7 @@ class ReceiptFilter {
     bool? warrantyOnly,
     bool? taxRelevantOnly,
     String? expenseType,
+    String? expenseCategoryId,
   }) {
     return ReceiptFilter(
       searchQuery: searchQuery ?? this.searchQuery,
@@ -286,6 +294,7 @@ class ReceiptFilter {
       warrantyOnly: warrantyOnly ?? this.warrantyOnly,
       taxRelevantOnly: taxRelevantOnly ?? this.taxRelevantOnly,
       expenseType: expenseType ?? this.expenseType,
+      expenseCategoryId: expenseCategoryId ?? this.expenseCategoryId,
     );
   }
 }

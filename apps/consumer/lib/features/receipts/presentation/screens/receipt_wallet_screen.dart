@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:receipt24_shared/receipt24_shared.dart';
 
 import '../../../../core/l10n/locale_provider.dart';
+import '../../../expenses/providers/expense_providers.dart';
 import '../../providers/receipt_providers.dart';
 
 class ReceiptWalletScreen extends ConsumerWidget {
@@ -15,11 +16,25 @@ class ReceiptWalletScreen extends ConsumerWidget {
     final l10n = context.l10n;
     final receiptsAsync = ref.watch(receiptsListProvider);
     final filter = ref.watch(receiptFilterProvider);
+    final duplicateCountAsync = ref.watch(duplicateCountProvider);
 
     return Scaffold(
       appBar: AppBar(
         title: Text(l10n.navReceipts),
         actions: [
+          duplicateCountAsync.when(
+            data: (count) => count > 0
+                ? IconButton(
+                    icon: Badge(
+                      label: Text('$count'),
+                      child: const Icon(Icons.content_copy),
+                    ),
+                    onPressed: () => context.push('/receipts/duplicates'),
+                  )
+                : const SizedBox.shrink(),
+            loading: () => const SizedBox.shrink(),
+            error: (_, __) => const SizedBox.shrink(),
+          ),
           IconButton(
             icon: const Icon(Icons.filter_list),
             onPressed: () => _showFilterSheet(context, ref, filter),
@@ -84,6 +99,7 @@ class ReceiptWalletScreen extends ConsumerWidget {
     final l10n = context.l10n;
     showModalBottomSheet(
       context: context,
+      isScrollControlled: true,
       builder: (ctx) => Padding(
         padding: const EdgeInsets.all(Receipt24Spacing.lg),
         child: Column(
@@ -93,6 +109,50 @@ class ReceiptWalletScreen extends ConsumerWidget {
             Text(l10n.filterSort,
                 style: Theme.of(ctx).textTheme.titleMedium),
             const SizedBox(height: Receipt24Spacing.md),
+            Text(l10n.filterByExpenseType,
+                style: Theme.of(ctx).textTheme.titleSmall),
+            Wrap(
+              spacing: 8,
+              children: [
+                _FilterChip(
+                  label: l10n.allTypes,
+                  selected: filter.expenseType == null,
+                  onTap: () {
+                    ref.read(receiptFilterProvider.notifier).state =
+                        ReceiptFilter(sortBy: filter.sortBy);
+                    ref.invalidate(receiptsListProvider);
+                  },
+                ),
+                _FilterChip(
+                  label: l10n.personal,
+                  selected: filter.expenseType == 'personal',
+                  onTap: () {
+                    ref.read(receiptFilterProvider.notifier).state =
+                        filter.copyWith(expenseType: 'personal');
+                    ref.invalidate(receiptsListProvider);
+                  },
+                ),
+                _FilterChip(
+                  label: l10n.business,
+                  selected: filter.expenseType == 'business',
+                  onTap: () {
+                    ref.read(receiptFilterProvider.notifier).state =
+                        filter.copyWith(expenseType: 'business');
+                    ref.invalidate(receiptsListProvider);
+                  },
+                ),
+                _FilterChip(
+                  label: l10n.mixedUse,
+                  selected: filter.expenseType == 'mixed_use',
+                  onTap: () {
+                    ref.read(receiptFilterProvider.notifier).state =
+                        filter.copyWith(expenseType: 'mixed_use');
+                    ref.invalidate(receiptsListProvider);
+                  },
+                ),
+              ],
+            ),
+            const Divider(),
             ...ReceiptSort.values.map((sort) {
               final label = switch (sort) {
                 ReceiptSort.newest => l10n.sortNewest,
@@ -119,16 +179,48 @@ class ReceiptWalletScreen extends ConsumerWidget {
   }
 }
 
+class _FilterChip extends StatelessWidget {
+  const _FilterChip({
+    required this.label,
+    required this.selected,
+    required this.onTap,
+  });
+
+  final String label;
+  final bool selected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return FilterChip(
+      label: Text(label),
+      selected: selected,
+      onSelected: (_) => onTap(),
+    );
+  }
+}
+
 class _ReceiptCard extends StatelessWidget {
   const _ReceiptCard({required this.receipt, required this.onTap});
 
   final ReceiptModel receipt;
   final VoidCallback onTap;
 
+  String _expenseTypeLabel(ExpenseClassificationModel? c, AppLocalizations l10n) {
+    if (c == null) return '';
+    return switch (c.expenseType) {
+      'business' => l10n.business,
+      'mixed_use' => l10n.mixedUse,
+      _ => l10n.personal,
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final dateFormat = DateFormat.yMMMd();
     final currency = receipt.currency ?? 'USD';
+    final classification = receipt.expenseClassification;
 
     return Card(
       margin: const EdgeInsets.only(bottom: Receipt24Spacing.sm),
@@ -165,11 +257,26 @@ class _ReceiptCard extends StatelessWidget {
                             color: Color(Receipt24Colors.textSecondary),
                             fontSize: 13),
                       ),
-                    if (receipt.categoryName != null)
-                      Text(receipt.categoryName!,
-                          style: TextStyle(
-                              color: Theme.of(context).colorScheme.secondary,
-                              fontSize: 12)),
+                    Wrap(
+                      spacing: 4,
+                      children: [
+                        if (classification?.categoryName != null)
+                          Chip(
+                            label: Text(classification!.categoryName!,
+                                style: const TextStyle(fontSize: 11)),
+                            visualDensity: VisualDensity.compact,
+                            padding: EdgeInsets.zero,
+                          ),
+                        if (classification != null)
+                          Chip(
+                            label: Text(
+                                _expenseTypeLabel(classification, l10n),
+                                style: const TextStyle(fontSize: 11)),
+                            visualDensity: VisualDensity.compact,
+                            padding: EdgeInsets.zero,
+                          ),
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -180,12 +287,17 @@ class _ReceiptCard extends StatelessWidget {
                     '$currency ${receipt.totalAmount?.toStringAsFixed(2) ?? '—'}',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  if (receipt.warrantyAvailable)
-                    const Icon(Icons.verified,
-                        size: 16, color: Color(Receipt24Colors.success)),
-                  if (receipt.isDuplicateFlagged)
-                    const Icon(Icons.content_copy,
-                        size: 16, color: Color(Receipt24Colors.warning)),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if (receipt.warrantyAvailable)
+                        const Icon(Icons.verified,
+                            size: 16, color: Color(Receipt24Colors.success)),
+                      if (receipt.isDuplicateFlagged)
+                        const Icon(Icons.content_copy,
+                            size: 16, color: Color(Receipt24Colors.warning)),
+                    ],
+                  ),
                 ],
               ),
             ],

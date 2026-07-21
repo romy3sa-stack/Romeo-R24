@@ -12,6 +12,7 @@ import '../../features/home/presentation/screens/profile_screen.dart';
 import '../../features/home/presentation/screens/receipts_placeholder_screen.dart';
 import '../../features/legal/presentation/screens/legal_content_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
+import '../../features/expenses/presentation/screens/duplicates_screen.dart';
 import '../../features/receipts/presentation/screens/manual_entry_screen.dart';
 import '../../features/receipts/presentation/screens/qr_scan_screen.dart';
 import '../../features/receipts/presentation/screens/receipt_detail_screen.dart';
@@ -118,6 +119,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/receipts/qr-scan',
         builder: (context, state) => const QrScanScreen(),
+      ),
+      GoRoute(
+        path: '/receipts/duplicates',
+        builder: (context, state) => const DuplicatesScreen(),
       ),
       GoRoute(
         path: '/receipts/:id',
