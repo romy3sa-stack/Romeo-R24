@@ -214,6 +214,12 @@ begin
   if pg_trigger_depth() > 1 or public.is_service_context() then
     return new;
   end if;
+  if (new.email, new.phone_number)
+    is distinct from
+    (old.email, old.phone_number)
+  then
+    raise exception 'Email and phone changes must use Supabase Auth';
+  end if;
   if new.role is distinct from old.role
     and not public.is_super_administrator()
   then
@@ -581,7 +587,17 @@ create policy support_tickets_update on public.support_tickets for update to aut
   with check (user_id = (select auth.uid()) or public.is_administrator());
 
 create policy audit_logs_select on public.audit_logs for select to authenticated
-  using (user_id = (select auth.uid()) or public.is_administrator());
+  using (
+    case
+      when record_type in (
+        'receipts',
+        'receipt_expense_classification',
+        'duplicate_receipt_alerts'
+      )
+        then public.has_sensitive_admin_purpose()
+      else public.is_administrator()
+    end
+  );
 
 create policy duplicate_alerts_select on public.duplicate_receipt_alerts for select to authenticated
   using (

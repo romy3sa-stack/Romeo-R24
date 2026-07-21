@@ -15,7 +15,7 @@
 | Notification | Own | Own | Manage |
 | Subscription | Own | Represented accountant | Super administrator manages |
 | Ticket | Own | Own | Super/support administrators manage |
-| Audit log | Actor's rows | Actor's rows | Super/support administrators review |
+| Audit log | No direct access | No direct access | Review; receipt-bearing rows are purpose-gated |
 | Duplicate alert | Own | Read when receipt scope matches | Purpose-gated |
 
 Hard delete is not granted to authenticated users. Backend retention processes require the service role.

@@ -1,6 +1,9 @@
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(10);
+set local search_path = public, extensions;
+grant usage on schema extensions to authenticated;
+grant execute on all functions in schema extensions to authenticated;
+select plan(11);
 
 insert into auth.users (
   id, instance_id, aud, role, email, encrypted_password, email_confirmed_at,
@@ -135,6 +138,11 @@ select is(
   0,
   'revoked accountant immediately loses receipt access'
 );
+select is(
+  (select count(*)::integer from public.audit_logs),
+  0,
+  'accountants cannot use audit history to retain client data'
+);
 
 set local request.jwt.claims =
   '{"sub":"30000000-0000-0000-0000-000000000001","role":"authenticated","app_metadata":{}}';
@@ -152,6 +160,8 @@ select is(
   'administrator with a support purpose claim can read receipts'
 );
 
+reset role;
+set session authorization authenticated;
 set local request.jwt.claims =
   '{"sub":"10000000-0000-0000-0000-000000000001","role":"authenticated","app_metadata":{}}';
 select throws_ok(
@@ -161,6 +171,7 @@ select throws_ok(
   'Only a super administrator may change roles',
   'consumer cannot escalate their role'
 );
+reset session authorization;
 
 select * from finish();
 rollback;

@@ -1,6 +1,7 @@
 begin;
 create extension if not exists pgtap with schema extensions;
-select plan(26);
+set local search_path = public, extensions;
+select plan(27);
 
 select has_table('public', 'users', 'users table exists');
 select has_table('public', 'consumer_profiles', 'consumer profiles table exists');
@@ -18,18 +19,18 @@ select has_table('public', 'support_tickets', 'support tickets table exists');
 select has_table('public', 'audit_logs', 'audit logs table exists');
 select has_table('public', 'duplicate_receipt_alerts', 'duplicate alerts table exists');
 
-select results_eq(
-  $$select enumlabel::text
+select is(
+  (select array_agg(enumlabel::text order by e.enumsortorder)
     from pg_enum e
     join pg_type t on t.oid = e.enumtypid
-    where t.typname = 'app_role'
-    order by e.enumsortorder$$,
-  $$values
-    ('consumer'),
-    ('accountant'),
-    ('accounting_firm_manager'),
-    ('super_administrator'),
-    ('support_administrator')$$,
+    where t.typname = 'app_role'),
+  array[
+    'consumer',
+    'accountant',
+    'accounting_firm_manager',
+    'super_administrator',
+    'support_administrator'
+  ]::text[],
   'only supported application roles exist'
 );
 
@@ -54,6 +55,18 @@ select is(
   (select relrowsecurity from pg_class where oid = 'public.accountant_client_access'::regclass),
   true,
   'client access has RLS enabled'
+);
+select is(
+  (
+    select count(*)::integer
+    from pg_class c
+    join pg_namespace n on n.oid = c.relnamespace
+    where n.nspname = 'public'
+      and c.relkind = 'r'
+      and not c.relrowsecurity
+  ),
+  0,
+  'every public application table has RLS enabled'
 );
 
 select results_eq(
