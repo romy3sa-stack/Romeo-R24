@@ -255,4 +255,39 @@ abstract final class L10nKeys {
   static const accessApproved = 'accessApproved';
   static const accessDenied = 'accessDenied';
   static const pendingAccountantRequests = 'pendingAccountantRequests';
+
+  // Subscriptions
+  static const manageSubscription = 'manageSubscription';
+  static const currentPlan = 'currentPlan';
+  static const choosePlan = 'choosePlan';
+  static const billingCycle = 'billingCycle';
+  static const monthly = 'monthly';
+  static const annual = 'annual';
+  static const perMonth = 'perMonth';
+  static const perYear = 'perYear';
+  static const upgradePlan = 'upgradePlan';
+  static const cancelSubscription = 'cancelSubscription';
+  static const subscriptionCancelled = 'subscriptionCancelled';
+  static const subscriptionActive = 'subscriptionActive';
+  static const renewsOn = 'renewsOn';
+  static const freePlan = 'freePlan';
+  static const planConsumerFree = 'planConsumerFree';
+  static const planConsumerPlus = 'planConsumerPlus';
+  static const planConsumerPro = 'planConsumerPro';
+  static const featureReceiptScan = 'featureReceiptScan';
+  static const featureBasicInsights = 'featureBasicInsights';
+  static const featureAdvancedInsights = 'featureAdvancedInsights';
+  static const featureWarrantyTracking = 'featureWarrantyTracking';
+  static const featureExport = 'featureExport';
+  static const featureAccountantSharing = 'featureAccountantSharing';
+  static const featurePrioritySupport = 'featurePrioritySupport';
+  static const featureUnlimitedStorage = 'featureUnlimitedStorage';
+  static const featureUpTo25Clients = 'featureUpTo25Clients';
+  static const featureUpTo100Clients = 'featureUpTo100Clients';
+  static const featureUnlimitedClients = 'featureUnlimitedClients';
+  static const featureClientReceipts = 'featureClientReceipts';
+  static const featureClassification = 'featureClassification';
+  static const featureTeamMembers = 'featureTeamMembers';
+  static const checkoutRedirect = 'checkoutRedirect';
+  static const subscriptionUpdated = 'subscriptionUpdated';
 }

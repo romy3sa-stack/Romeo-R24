@@ -173,6 +173,13 @@ class ProfileScreen extends ConsumerWidget {
           ),
           const Divider(),
           ListTile(
+            leading: const Icon(Icons.card_membership),
+            title: Text(l10n.manageSubscription),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/subscription'),
+          ),
+          const Divider(),
+          ListTile(
             leading: const Icon(Icons.logout,
                 color: Color(Receipt24Colors.error)),
             title: Text(l10n.signOut),

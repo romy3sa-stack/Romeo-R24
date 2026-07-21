@@ -103,7 +103,8 @@ flutter run
 | Phase 8 | ✅ Complete | Warranties, returns, reminders, deadline tracking |
 | Phase 9 | ✅ Complete | Accountant portal — clients, receipts, classification |
 | Phase 10 | ✅ Complete | In-app notifications, prefs, reminders, edge functions |
-| Phase 11+ | ⏳ Pending | Subscriptions, admin dashboard, polish, deployment |
+| Phase 11 | ✅ Complete | Stripe subscriptions, plans, checkout, webhook |
+| Phase 12+ | ⏳ Pending | Admin dashboard, polish, testing, deployment |
 
 ## Documentation
 
@@ -117,6 +118,7 @@ flutter run
 - [Phase 8 Testing Checklist](docs/testing-checklist-phase8.md)
 - [Phase 9 Testing Checklist](docs/testing-checklist-phase9.md)
 - [Phase 10 Testing Checklist](docs/testing-checklist-phase10.md)
+- [Phase 11 Testing Checklist](docs/testing-checklist-phase11.md)
 
 ## Security
 

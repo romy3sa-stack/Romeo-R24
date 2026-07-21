@@ -6,6 +6,7 @@ import '../auth/auth_providers.dart';
 import '../auth/auth_state.dart';
 import '../../features/auth/presentation/screens/login_screen.dart';
 import '../../features/clients/presentation/screens/clients_screen.dart';
+import '../../features/subscriptions/presentation/screens/subscription_screen.dart';
 import '../../features/receipts/presentation/screens/receipt_screens.dart';
 import '../../features/shell/presentation/screens/portal_shell.dart';
 
@@ -76,6 +77,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => ClientDetailScreen(
           clientId: state.pathParameters['clientId']!,
         ),
+      ),
+      GoRoute(
+        path: '/subscription',
+        builder: (context, state) => const SubscriptionScreen(),
       ),
       ShellRoute(
         builder: (context, state, child) => PortalShell(child: child),

@@ -9,5 +9,6 @@ export 'src/models/expense_models.dart';
 export 'src/models/insights_models.dart';
 export 'src/models/receipt_models.dart';
 export 'src/models/notification_models.dart';
+export 'src/models/subscription_models.dart';
 export 'src/models/warranty_return_models.dart';
 export 'src/roles/roles.dart';

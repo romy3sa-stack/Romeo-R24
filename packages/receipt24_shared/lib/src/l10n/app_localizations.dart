@@ -264,6 +264,43 @@ class AppLocalizations {
   String get accessDenied => t(L10nKeys.accessDenied);
   String get pendingAccountantRequests =>
       t(L10nKeys.pendingAccountantRequests);
+  String get manageSubscription => t(L10nKeys.manageSubscription);
+  String get currentPlan => t(L10nKeys.currentPlan);
+  String get choosePlan => t(L10nKeys.choosePlan);
+  String get billingCycle => t(L10nKeys.billingCycle);
+  String get monthly => t(L10nKeys.monthly);
+  String get annual => t(L10nKeys.annual);
+  String get perMonth => t(L10nKeys.perMonth);
+  String get perYear => t(L10nKeys.perYear);
+  String get upgradePlan => t(L10nKeys.upgradePlan);
+  String get cancelSubscription => t(L10nKeys.cancelSubscription);
+  String get subscriptionCancelled => t(L10nKeys.subscriptionCancelled);
+  String get subscriptionActive => t(L10nKeys.subscriptionActive);
+  String get renewsOn => t(L10nKeys.renewsOn);
+  String get freePlan => t(L10nKeys.freePlan);
+  String get planConsumerFree => t(L10nKeys.planConsumerFree);
+  String get planConsumerPlus => t(L10nKeys.planConsumerPlus);
+  String get planConsumerPro => t(L10nKeys.planConsumerPro);
+  String get featureReceiptScan => t(L10nKeys.featureReceiptScan);
+  String get featureBasicInsights => t(L10nKeys.featureBasicInsights);
+  String get featureAdvancedInsights => t(L10nKeys.featureAdvancedInsights);
+  String get featureWarrantyTracking => t(L10nKeys.featureWarrantyTracking);
+  String get featureExport => t(L10nKeys.featureExport);
+  String get featureAccountantSharing =>
+      t(L10nKeys.featureAccountantSharing);
+  String get featurePrioritySupport => t(L10nKeys.featurePrioritySupport);
+  String get featureUnlimitedStorage => t(L10nKeys.featureUnlimitedStorage);
+  String get featureUpTo25Clients => t(L10nKeys.featureUpTo25Clients);
+  String get featureUpTo100Clients => t(L10nKeys.featureUpTo100Clients);
+  String get featureUnlimitedClients => t(L10nKeys.featureUnlimitedClients);
+  String get featureClientReceipts => t(L10nKeys.featureClientReceipts);
+  String get featureClassification => t(L10nKeys.featureClassification);
+  String get featureTeamMembers => t(L10nKeys.featureTeamMembers);
+  String get checkoutRedirect => t(L10nKeys.checkoutRedirect);
+  String get subscriptionUpdated => t(L10nKeys.subscriptionUpdated);
+
+  String planLabel(String nameKey) => t(nameKey);
+  String featureLabel(String featureKey) => t(featureKey);
 
   static final Map<String, Map<String, String>> _translations = {
     'en': _en,
@@ -525,6 +562,39 @@ const _en = {
   'accessApproved': 'Access approved',
   'accessDenied': 'Access denied',
   'pendingAccountantRequests': 'Pending accountant requests',
+  'manageSubscription': 'Manage subscription',
+  'currentPlan': 'Current plan',
+  'choosePlan': 'Choose a plan',
+  'billingCycle': 'Billing cycle',
+  'monthly': 'Monthly',
+  'annual': 'Annual',
+  'perMonth': '/month',
+  'perYear': '/year',
+  'upgradePlan': 'Upgrade',
+  'cancelSubscription': 'Cancel subscription',
+  'subscriptionCancelled': 'Subscription cancelled',
+  'subscriptionActive': 'Active',
+  'renewsOn': 'Renews on',
+  'freePlan': 'Free',
+  'planConsumerFree': 'Free',
+  'planConsumerPlus': 'Plus',
+  'planConsumerPro': 'Pro',
+  'featureReceiptScan': 'Receipt scan & upload',
+  'featureBasicInsights': 'Basic spending insights',
+  'featureAdvancedInsights': 'Advanced insights & alerts',
+  'featureWarrantyTracking': 'Warranty & return tracking',
+  'featureExport': 'Export receipts (CSV/PDF)',
+  'featureAccountantSharing': 'Share with accountant',
+  'featurePrioritySupport': 'Priority support',
+  'featureUnlimitedStorage': 'Unlimited storage',
+  'featureUpTo25Clients': 'Up to 25 clients',
+  'featureUpTo100Clients': 'Up to 100 clients',
+  'featureUnlimitedClients': 'Unlimited clients',
+  'featureClientReceipts': 'Client receipt access',
+  'featureClassification': 'Expense classification',
+  'featureTeamMembers': 'Team member accounts',
+  'checkoutRedirect': 'Redirecting to secure checkout...',
+  'subscriptionUpdated': 'Subscription updated',
 };
 
 const _fr = {
