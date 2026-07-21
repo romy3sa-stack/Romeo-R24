@@ -1,6 +1,7 @@
 'use client';
 
 import { createClient } from '@/lib/supabase/client';
+import { mapAuthError } from '@/lib/auth-errors';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FormEvent, useState } from 'react';
 
@@ -23,13 +24,19 @@ export function LoginForm() {
     setError(null);
 
     const supabase = createClient();
-    const { error: signInError } = await supabase.auth.signInWithPassword({
+    const { data, error: signInError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
     if (signInError) {
-      setError(signInError.message);
+      setError(mapAuthError(signInError.message, signInError.code));
+      setLoading(false);
+      return;
+    }
+
+    if (!data.session) {
+      setError('Sign in failed. No session was created. Please try again.');
       setLoading(false);
       return;
     }

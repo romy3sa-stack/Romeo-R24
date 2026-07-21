@@ -4,6 +4,18 @@ Step-by-step deployment for project **`ivflhhxjqxcskwixaggd`**.
 
 ---
 
+## Part 0 — One-time Supabase settings (before testing login)
+
+### Disable email confirmation (recommended for dev/testing)
+
+Open: **https://supabase.com/dashboard/project/ivflhhxjqxcskwixaggd/auth/providers**
+
+Under **Email**, turn **off** “Confirm email” (or create users with **Auto Confirm User** in the Users tab).
+
+Without this, new sign-ups cannot log in until they confirm their email.
+
+---
+
 ## Part 1 — Database & backend (10 min)
 
 ### 1. Get a Supabase access token
