@@ -243,6 +243,27 @@ class AppLocalizations {
   String get scopeAllReceipts => t(L10nKeys.scopeAllReceipts);
   String get scopeBusinessOnly => t(L10nKeys.scopeBusinessOnly);
   String get scopeTaxRelated => t(L10nKeys.scopeTaxRelated);
+  String get notifications => t(L10nKeys.notifications);
+  String get notificationPreferences => t(L10nKeys.notificationPreferences);
+  String get noNotifications => t(L10nKeys.noNotifications);
+  String get noNotificationsHint => t(L10nKeys.noNotificationsHint);
+  String get markAllRead => t(L10nKeys.markAllRead);
+  String get unreadNotifications => t(L10nKeys.unreadNotifications);
+  String get pushNotifications => t(L10nKeys.pushNotifications);
+  String get emailNotifications => t(L10nKeys.emailNotifications);
+  String get smsNotifications => t(L10nKeys.smsNotifications);
+  String get warrantyReminders => t(L10nKeys.warrantyReminders);
+  String get returnReminders => t(L10nKeys.returnReminders);
+  String get marketingNotifications => t(L10nKeys.marketingNotifications);
+  String get preferencesSaved => t(L10nKeys.preferencesSaved);
+  String get savePreferences => t(L10nKeys.savePreferences);
+  String get accountantAccessRequest => t(L10nKeys.accountantAccessRequest);
+  String get approveAccess => t(L10nKeys.approveAccess);
+  String get denyAccess => t(L10nKeys.denyAccess);
+  String get accessApproved => t(L10nKeys.accessApproved);
+  String get accessDenied => t(L10nKeys.accessDenied);
+  String get pendingAccountantRequests =>
+      t(L10nKeys.pendingAccountantRequests);
 
   static final Map<String, Map<String, String>> _translations = {
     'en': _en,
@@ -484,6 +505,26 @@ const _en = {
   'scopeAllReceipts': 'All receipts',
   'scopeBusinessOnly': 'Business only',
   'scopeTaxRelated': 'Tax-related only',
+  'notifications': 'Notifications',
+  'notificationPreferences': 'Notification preferences',
+  'noNotifications': 'No notifications yet',
+  'noNotificationsHint': 'Alerts about receipts, warranties, and access requests will appear here.',
+  'markAllRead': 'Mark all as read',
+  'unreadNotifications': 'Unread',
+  'pushNotifications': 'Push notifications',
+  'emailNotifications': 'Email notifications',
+  'smsNotifications': 'SMS notifications',
+  'warrantyReminders': 'Warranty reminders',
+  'returnReminders': 'Return reminders',
+  'marketingNotifications': 'Marketing updates',
+  'preferencesSaved': 'Preferences saved',
+  'savePreferences': 'Save preferences',
+  'accountantAccessRequest': 'Accountant access request',
+  'approveAccess': 'Approve',
+  'denyAccess': 'Deny',
+  'accessApproved': 'Access approved',
+  'accessDenied': 'Access denied',
+  'pendingAccountantRequests': 'Pending accountant requests',
 };
 
 const _fr = {

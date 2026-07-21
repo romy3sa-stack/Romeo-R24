@@ -102,7 +102,8 @@ flutter run
 | Phase 7 | ✅ Complete | Spending insights, charts, alerts, recurring detection |
 | Phase 8 | ✅ Complete | Warranties, returns, reminders, deadline tracking |
 | Phase 9 | ✅ Complete | Accountant portal — clients, receipts, classification |
-| Phase 10+ | ⏳ Pending | Notifications, subscriptions, admin dashboard, etc. |
+| Phase 10 | ✅ Complete | In-app notifications, prefs, reminders, edge functions |
+| Phase 11+ | ⏳ Pending | Subscriptions, admin dashboard, polish, deployment |
 
 ## Documentation
 
@@ -115,6 +116,7 @@ flutter run
 - [Phase 1-2 Testing Checklist](docs/testing-checklist-phase1-2.md)
 - [Phase 8 Testing Checklist](docs/testing-checklist-phase8.md)
 - [Phase 9 Testing Checklist](docs/testing-checklist-phase9.md)
+- [Phase 10 Testing Checklist](docs/testing-checklist-phase10.md)
 
 ## Security
 

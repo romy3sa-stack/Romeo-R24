@@ -233,4 +233,26 @@ abstract final class L10nKeys {
   static const scopeAllReceipts = 'scopeAllReceipts';
   static const scopeBusinessOnly = 'scopeBusinessOnly';
   static const scopeTaxRelated = 'scopeTaxRelated';
+
+  // Notifications
+  static const notifications = 'notifications';
+  static const notificationPreferences = 'notificationPreferences';
+  static const noNotifications = 'noNotifications';
+  static const noNotificationsHint = 'noNotificationsHint';
+  static const markAllRead = 'markAllRead';
+  static const unreadNotifications = 'unreadNotifications';
+  static const pushNotifications = 'pushNotifications';
+  static const emailNotifications = 'emailNotifications';
+  static const smsNotifications = 'smsNotifications';
+  static const warrantyReminders = 'warrantyReminders';
+  static const returnReminders = 'returnReminders';
+  static const marketingNotifications = 'marketingNotifications';
+  static const preferencesSaved = 'preferencesSaved';
+  static const savePreferences = 'savePreferences';
+  static const accountantAccessRequest = 'accountantAccessRequest';
+  static const approveAccess = 'approveAccess';
+  static const denyAccess = 'denyAccess';
+  static const accessApproved = 'accessApproved';
+  static const accessDenied = 'accessDenied';
+  static const pendingAccountantRequests = 'pendingAccountantRequests';
 }

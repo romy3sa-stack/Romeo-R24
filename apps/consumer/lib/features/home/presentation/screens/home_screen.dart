@@ -6,6 +6,7 @@ import 'package:receipt24_shared/receipt24_shared.dart';
 import '../../../../core/auth/auth_providers.dart';
 import '../../../../core/l10n/locale_provider.dart';
 import '../../../../core/widgets/receipt24_widgets.dart';
+import '../../notifications/providers/notification_providers.dart';
 import '../../providers/receipt_providers.dart';
 import '../../warranties/providers/warranty_return_providers.dart';
 
@@ -89,6 +90,12 @@ class HomeScreen extends ConsumerWidget {
     final statsAsync = ref.watch(homeStatsProvider);
 
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        actions: [
+          _NotificationBell(),
+        ],
+      ),
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: () async {
@@ -185,6 +192,37 @@ class HomeScreen extends ConsumerWidget {
               const SizedBox(height: Receipt24Spacing.sm),
               _RecentReceiptsSection(),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _NotificationBell extends ConsumerWidget {
+  const _NotificationBell();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final unreadAsync = ref.watch(unreadCountProvider);
+
+    return unreadAsync.when(
+      loading: () => IconButton(
+        icon: const Icon(Icons.notifications_outlined),
+        onPressed: () => context.push('/notifications'),
+      ),
+      error: (_, __) => IconButton(
+        icon: const Icon(Icons.notifications_outlined),
+        onPressed: () => context.push('/notifications'),
+      ),
+      data: (count) => Padding(
+        padding: const EdgeInsets.only(right: Receipt24Spacing.sm),
+        child: Badge(
+          isLabelVisible: count > 0,
+          label: Text(count > 9 ? '9+' : '$count'),
+          child: IconButton(
+            icon: const Icon(Icons.notifications_outlined),
+            onPressed: () => context.push('/notifications'),
           ),
         ),
       ),

@@ -25,6 +25,7 @@ import '../../features/warranties/presentation/screens/add_warranty_screen.dart'
 import '../../features/warranties/presentation/screens/return_detail_screen.dart';
 import '../../features/warranties/presentation/screens/warranties_returns_hub_screen.dart';
 import '../../features/warranties/presentation/screens/warranty_detail_screen.dart';
+import '../../features/notifications/presentation/screens/notifications_screen.dart';
 import '../auth/auth_providers.dart';
 import '../auth/auth_state.dart';
 
@@ -163,6 +164,14 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         builder: (context, state) => ReturnDetailScreen(
           returnId: state.pathParameters['id']!,
         ),
+      ),
+      GoRoute(
+        path: '/notifications',
+        builder: (context, state) => const NotificationsScreen(),
+      ),
+      GoRoute(
+        path: '/notifications/preferences',
+        builder: (context, state) => const NotificationPreferencesScreen(),
       ),
       ShellRoute(
         builder: (context, state, child) => HomeShell(child: child),

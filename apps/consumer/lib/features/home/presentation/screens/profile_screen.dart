@@ -45,6 +45,19 @@ class ProfileScreen extends ConsumerWidget {
           ),
           const Divider(),
           ListTile(
+            leading: const Icon(Icons.notifications_outlined),
+            title: Text(l10n.notifications),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/notifications'),
+          ),
+          ListTile(
+            leading: const Icon(Icons.tune),
+            title: Text(l10n.notificationPreferences),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/notifications/preferences'),
+          ),
+          const Divider(),
+          ListTile(
             leading: const Icon(Icons.verified_outlined),
             title: Text(l10n.warrantiesAndReturns),
             trailing: const Icon(Icons.chevron_right),

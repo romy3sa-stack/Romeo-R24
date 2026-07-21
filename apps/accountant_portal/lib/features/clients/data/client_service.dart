@@ -80,6 +80,29 @@ class ClientService {
         .select('*, users(full_name, email)')
         .single();
 
+    try {
+      await _client.functions.invoke(
+        'send-notification',
+        body: {
+          'userId': consumerId,
+          'notificationType': 'accountant_invitation',
+          'title': 'Accountant access request',
+          'message':
+              '${profile.firmName} requests access to your receipts.',
+          'relatedRecordType': 'accountant_access',
+          'relatedRecordId': row['id'],
+          'channels': ['push', 'email'],
+          'templateKey': 'accountant_invitation',
+          'templateVars': {
+            'accountant_name': profile.firmName,
+            'firm_name': profile.firmName,
+          },
+        },
+      );
+    } catch (_) {
+      // Falls back to in-app pending requests list on consumer side
+    }
+
     return ClientAccessModel.fromJson(row);
   }
 

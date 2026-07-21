@@ -8,6 +8,7 @@ import '../../../../core/l10n/locale_provider.dart';
 import '../../../../core/utils/form_validators.dart';
 import '../../../../core/widgets/receipt24_widgets.dart';
 import '../../../expenses/providers/expense_providers.dart';
+import '../../../notifications/data/notification_helper.dart';
 import '../../providers/receipt_providers.dart';
 
 class ManualEntryScreen extends ConsumerStatefulWidget {
@@ -72,6 +73,8 @@ class _ManualEntryScreenState extends ConsumerState<ManualEntryScreen> {
             userId: user.id,
             merchantName: _merchantController.text.trim(),
           );
+
+      await notifyReceiptSaved(ref, userId: user.id, receipt: saved);
 
       ref.invalidate(receiptsListProvider);
       ref.invalidate(homeStatsProvider);

@@ -8,6 +8,7 @@ import '../../../../core/auth/auth_providers.dart';
 import '../../../../core/l10n/locale_provider.dart';
 import '../../../../core/widgets/receipt24_widgets.dart';
 import '../../../expenses/providers/expense_providers.dart';
+import '../../../notifications/data/notification_helper.dart';
 import '../../providers/receipt_providers.dart';
 
 class ReceiptReviewScreen extends ConsumerStatefulWidget {
@@ -101,6 +102,8 @@ class _ReceiptReviewScreenState extends ConsumerState<ReceiptReviewScreen> {
             merchantName: _merchantController.text.trim(),
             items: _items,
           );
+
+      await notifyReceiptSaved(ref, userId: user.id, receipt: saved);
 
       ref.read(pendingCaptureProvider.notifier).state = null;
       ref.invalidate(receiptsListProvider);
