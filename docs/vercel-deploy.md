@@ -2,6 +2,36 @@
 
 Production build verified. Follow these steps exactly.
 
+## Fix 404 NOT_FOUND
+
+If you see `404: NOT_FOUND` on Vercel, the project is building from the **wrong folder**.
+
+### Fix (2 minutes)
+
+1. Open your project on Vercel → **Settings** → **General**
+2. Find **Root Directory** → click **Edit**
+3. Set to: `apps/web`
+4. Click **Save**
+5. Go to **Deployments** → latest deployment → **⋯** → **Redeploy**
+
+### Verify settings
+
+| Setting | Correct value |
+|---------|---------------|
+| Root Directory | `apps/web` |
+| Framework | Next.js |
+| Build Command | `npm run build` (default) |
+| Output Directory | *(leave default — do not set manually)* |
+
+### Environment variables (required)
+
+| Name | Value |
+|------|-------|
+| `NEXT_PUBLIC_SUPABASE_URL` | `https://ivflhhxjqxcskwixaggd.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | your `sb_publishable_...` key |
+
+---
+
 ## 1. Open Vercel import
 
 **https://vercel.com/new/import?s=https://github.com/romy3sa-stack/Romeo-R24**
