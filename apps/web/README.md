@@ -7,7 +7,7 @@ SSR web portal for Receipt24 with Supabase authentication via `@supabase/ssr`.
 ```bash
 cd apps/web
 cp .env.local.example .env.local
-# Edit .env.local with your Supabase URL and anon key
+# Edit .env.local with your Supabase URL and publishable (or anon) key
 
 npm install
 npm run dev
@@ -38,6 +38,6 @@ npm run build
 npm run start
 ```
 
-Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` in your hosting provider (Vercel, etc.).
+Set `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` (or `NEXT_PUBLIC_SUPABASE_ANON_KEY`) in your hosting provider (Vercel, etc.).
 
 Add your production URL to Supabase **Authentication → URL Configuration**.
