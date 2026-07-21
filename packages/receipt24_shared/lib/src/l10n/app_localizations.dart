@@ -298,6 +298,34 @@ class AppLocalizations {
   String get featureTeamMembers => t(L10nKeys.featureTeamMembers);
   String get checkoutRedirect => t(L10nKeys.checkoutRedirect);
   String get subscriptionUpdated => t(L10nKeys.subscriptionUpdated);
+  String get adminDashboard => t(L10nKeys.adminDashboard);
+  String get navUsers => t(L10nKeys.navUsers);
+  String get navAccountants => t(L10nKeys.navAccountants);
+  String get navSupport => t(L10nKeys.navSupport);
+  String get navAuditLogs => t(L10nKeys.navAuditLogs);
+  String get totalUsers => t(L10nKeys.totalUsers);
+  String get totalConsumers => t(L10nKeys.totalConsumers);
+  String get totalAccountants => t(L10nKeys.totalAccountants);
+  String get pendingVerifications => t(L10nKeys.pendingVerifications);
+  String get openTickets => t(L10nKeys.openTickets);
+  String get totalReceipts => t(L10nKeys.totalReceipts);
+  String get verifyAccountant => t(L10nKeys.verifyAccountant);
+  String get rejectAccountant => t(L10nKeys.rejectAccountant);
+  String get accountantVerified => t(L10nKeys.accountantVerified);
+  String get accountantRejected => t(L10nKeys.accountantRejected);
+  String get verificationStatus => t(L10nKeys.verificationStatus);
+  String get viewDocument => t(L10nKeys.viewDocument);
+  String get suspendUser => t(L10nKeys.suspendUser);
+  String get activateUser => t(L10nKeys.activateUser);
+  String get userSuspended => t(L10nKeys.userSuspended);
+  String get userActivated => t(L10nKeys.userActivated);
+  String get ticketStatus => t(L10nKeys.ticketStatus);
+  String get updateTicket => t(L10nKeys.updateTicket);
+  String get ticketUpdated => t(L10nKeys.ticketUpdated);
+  String get notAnAdmin => t(L10nKeys.notAnAdmin);
+  String get noPendingVerifications => t(L10nKeys.noPendingVerifications);
+  String get noTickets => t(L10nKeys.noTickets);
+  String get noAuditLogs => t(L10nKeys.noAuditLogs);
 
   String planLabel(String nameKey) => t(nameKey);
   String featureLabel(String featureKey) => t(featureKey);
@@ -595,6 +623,34 @@ const _en = {
   'featureTeamMembers': 'Team member accounts',
   'checkoutRedirect': 'Redirecting to secure checkout...',
   'subscriptionUpdated': 'Subscription updated',
+  'adminDashboard': 'Admin Dashboard',
+  'navUsers': 'Users',
+  'navAccountants': 'Accountants',
+  'navSupport': 'Support',
+  'navAuditLogs': 'Audit logs',
+  'totalUsers': 'Total users',
+  'totalConsumers': 'Consumers',
+  'totalAccountants': 'Accountants',
+  'pendingVerifications': 'Pending verifications',
+  'openTickets': 'Open tickets',
+  'totalReceipts': 'Total receipts',
+  'verifyAccountant': 'Verify',
+  'rejectAccountant': 'Reject',
+  'accountantVerified': 'Accountant verified',
+  'accountantRejected': 'Accountant rejected',
+  'verificationStatus': 'Verification status',
+  'viewDocument': 'View document',
+  'suspendUser': 'Suspend user',
+  'activateUser': 'Activate user',
+  'userSuspended': 'User suspended',
+  'userActivated': 'User activated',
+  'ticketStatus': 'Ticket status',
+  'updateTicket': 'Update ticket',
+  'ticketUpdated': 'Ticket updated',
+  'notAnAdmin': 'This dashboard is for administrators only.',
+  'noPendingVerifications': 'No pending verifications',
+  'noTickets': 'No support tickets',
+  'noAuditLogs': 'No audit logs',
 };
 
 const _fr = {

@@ -290,4 +290,34 @@ abstract final class L10nKeys {
   static const featureTeamMembers = 'featureTeamMembers';
   static const checkoutRedirect = 'checkoutRedirect';
   static const subscriptionUpdated = 'subscriptionUpdated';
+
+  // Admin dashboard
+  static const adminDashboard = 'adminDashboard';
+  static const navUsers = 'navUsers';
+  static const navAccountants = 'navAccountants';
+  static const navSupport = 'navSupport';
+  static const navAuditLogs = 'navAuditLogs';
+  static const totalUsers = 'totalUsers';
+  static const totalConsumers = 'totalConsumers';
+  static const totalAccountants = 'totalAccountants';
+  static const pendingVerifications = 'pendingVerifications';
+  static const openTickets = 'openTickets';
+  static const totalReceipts = 'totalReceipts';
+  static const verifyAccountant = 'verifyAccountant';
+  static const rejectAccountant = 'rejectAccountant';
+  static const accountantVerified = 'accountantVerified';
+  static const accountantRejected = 'accountantRejected';
+  static const verificationStatus = 'verificationStatus';
+  static const viewDocument = 'viewDocument';
+  static const suspendUser = 'suspendUser';
+  static const activateUser = 'activateUser';
+  static const userSuspended = 'userSuspended';
+  static const userActivated = 'userActivated';
+  static const ticketStatus = 'ticketStatus';
+  static const updateTicket = 'updateTicket';
+  static const ticketUpdated = 'ticketUpdated';
+  static const notAnAdmin = 'notAnAdmin';
+  static const noPendingVerifications = 'noPendingVerifications';
+  static const noTickets = 'noTickets';
+  static const noAuditLogs = 'noAuditLogs';
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
 import 'package:receipt24_shared/receipt24_shared.dart';
 
@@ -37,7 +36,7 @@ class _SubscriptionScreenState extends ConsumerState<SubscriptionScreen> {
 
     setState(() => _isLoading = true);
     try {
-      final url = await ref.read(subscriptionServiceProvider).createCheckoutSession(
+      await ref.read(subscriptionServiceProvider).createCheckoutSession(
             userId: user.id,
             planId: plan.id,
             billingCycle: _billingCycle,
