@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:receipt24_shared/receipt24_shared.dart';
 
-import '../../../core/l10n/locale_provider.dart';
-import '../../../core/widgets/receipt24_widgets.dart';
+import '../../../../core/l10n/locale_provider.dart';
+import '../../../../core/widgets/receipt24_widgets.dart';
 import '../providers/insights_providers.dart';
 
 class InsightsScreen extends ConsumerWidget {
