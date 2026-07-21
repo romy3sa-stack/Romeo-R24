@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:receipt24_shared/receipt24_shared.dart';
 
-/// Phase 3.1 — Welcome screen (placeholder for Phase 3 implementation).
-class WelcomeScreen extends StatelessWidget {
+import '../../../core/l10n/locale_provider.dart';
+import '../../../core/widgets/receipt24_widgets.dart';
+
+class WelcomeScreen extends ConsumerWidget {
   const WelcomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
     final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
 
     return Scaffold(
       body: SafeArea(
@@ -16,52 +20,73 @@ class WelcomeScreen extends StatelessWidget {
           padding: const EdgeInsets.all(Receipt24Spacing.lg),
           child: Column(
             children: [
-              const Spacer(),
-              Image.asset(
-                'assets/images/receipt24_logo.png',
-                height: 120,
-                errorBuilder: (_, __, ___) => _LogoPlaceholder(isDark: isDark),
+              const Align(
+                alignment: Alignment.centerRight,
+                child: LanguageSelector(),
               ),
+              const Spacer(),
+              const Receipt24Logo(size: 120),
               const SizedBox(height: Receipt24Spacing.lg),
               Text(
-                Receipt24Strings.appName,
+                l10n.appName,
                 style: theme.textTheme.headlineLarge?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: isDark ? Colors.white : const Color(Receipt24Colors.navy),
+                  color: theme.brightness == Brightness.dark
+                      ? Colors.white
+                      : const Color(Receipt24Colors.navy),
                 ),
               ),
               const SizedBox(height: Receipt24Spacing.sm),
               Text(
-                Receipt24Strings.tagline,
+                l10n.tagline,
+                textAlign: TextAlign.center,
                 style: theme.textTheme.titleMedium?.copyWith(
                   color: const Color(Receipt24Colors.textSecondary),
                 ),
               ),
               const Spacer(),
-              ElevatedButton(
-                onPressed: () {},
-                child: const Text('Sign In'),
+              PrimaryButton(
+                label: l10n.signIn,
+                onPressed: () => context.push('/auth/login'),
               ),
               const SizedBox(height: Receipt24Spacing.sm),
-              OutlinedButton(
-                onPressed: () {},
-                child: const Text('Create Account'),
+              SecondaryButton(
+                label: l10n.createAccount,
+                onPressed: () => context.push('/auth/register'),
               ),
               const SizedBox(height: Receipt24Spacing.md),
               Row(
                 children: [
-                  Expanded(child: _SocialButton(label: 'Google', onPressed: () {})),
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.g_mobiledata, size: 24),
+                      label: Text(l10n.continueWithGoogle),
+                    ),
+                  ),
                   const SizedBox(width: Receipt24Spacing.sm),
-                  Expanded(child: _SocialButton(label: 'Apple', onPressed: () {})),
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () {},
+                      icon: const Icon(Icons.apple, size: 20),
+                      label: Text(l10n.continueWithApple),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: Receipt24Spacing.lg),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  TextButton(onPressed: () {}, child: const Text('Privacy Policy')),
+                  TextButton(
+                    onPressed: () => context.push('/legal/privacy'),
+                    child: Text(l10n.privacyPolicy),
+                  ),
                   const Text(' · '),
-                  TextButton(onPressed: () {}, child: const Text('Terms')),
+                  TextButton(
+                    onPressed: () => context.push('/legal/terms'),
+                    child: Text(l10n.termsAndConditions),
+                  ),
                 ],
               ),
             ],
@@ -69,36 +94,5 @@ class WelcomeScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-class _LogoPlaceholder extends StatelessWidget {
-  const _LogoPlaceholder({required this.isDark});
-
-  final bool isDark;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      width: 100,
-      decoration: BoxDecoration(
-        color: const Color(Receipt24Colors.navy),
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: const Icon(Icons.receipt_long, color: Color(Receipt24Colors.success), size: 48),
-    );
-  }
-}
-
-class _SocialButton extends StatelessWidget {
-  const _SocialButton({required this.label, required this.onPressed});
-
-  final String label;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: onPressed, child: Text(label));
   }
 }
