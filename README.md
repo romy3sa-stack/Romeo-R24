@@ -98,7 +98,8 @@ flutter run
 | Phase 3 | ✅ Complete | Auth screens, onboarding, home shell |
 | Phase 4 | ✅ Complete | Consumer dashboard, receipt wallet, details |
 | Phase 5 | ✅ Complete | Camera, upload, PDF, manual, OCR review (mock OCR) |
-| Phase 6+ | ⏳ Pending | Expenses, insights, accountant portal, etc. |
+| Phase 6 | ✅ Complete | Expense categories, classification, duplicate review |
+| Phase 7+ | ⏳ Pending | Insights, warranties, accountant portal, etc. |
 
 ## Documentation
 
