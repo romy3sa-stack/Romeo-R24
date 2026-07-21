@@ -1,5 +1,6 @@
 library receipt24_shared;
 
+export 'src/analytics/analytics_service.dart';
 export 'src/constants/app_constants.dart';
 export 'src/constants/reference_data.dart';
 export 'src/l10n/app_localizations.dart';

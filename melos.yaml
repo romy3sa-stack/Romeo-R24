@@ -1,2 +1,19 @@
 name: receipt24
 description: Receipt24 monorepo workspace
+
+scripts:
+  inject-env:
+    run: bash scripts/inject-env.sh all
+    description: Generate app .env files from environment variables
+
+  build-web:
+    run: bash scripts/build-web.sh all
+    description: Build all Flutter web apps
+
+  deploy-supabase:
+    run: bash scripts/deploy-supabase.sh
+    description: Deploy Supabase migrations and edge functions
+
+  test:
+    run: cd packages/receipt24_shared && flutter test
+    description: Run shared package unit tests

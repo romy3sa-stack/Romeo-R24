@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  shared-tests:
+    name: Shared package tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        working-directory: packages/receipt24_shared
+        run: flutter pub get
+
+      - name: Run tests
+        working-directory: packages/receipt24_shared
+        run: flutter test
+
+  analyze-apps:
+    name: Analyze Flutter apps
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app:
+          - apps/consumer
+          - apps/accountant_portal
+          - apps/admin_dashboard
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Create placeholder .env
+        run: |
+          cat > ${{ matrix.app }}/.env <<EOF
+          SUPABASE_URL=http://127.0.0.1:54321
+          SUPABASE_ANON_KEY=placeholder
+          APP_ENV=testing
+          EOF
+
+      - name: Pub get
+        working-directory: ${{ matrix.app }}
+        run: flutter pub get
+
+      - name: Analyze
+        working-directory: ${{ matrix.app }}
+        run: flutter analyze --no-fatal-infos
+
+  validate-supabase:
+    name: Validate Supabase config
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+
+      - name: Check migrations parse
+        run: |
+          test -d supabase/migrations
+          ls supabase/migrations/*.sql | wc -l
+
+      - name: List edge functions
+        run: ls supabase/functions/

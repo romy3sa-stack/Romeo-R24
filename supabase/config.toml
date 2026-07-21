@@ -44,7 +44,11 @@ additional_redirect_urls = [
   "http://127.0.0.1:3000",
   "http://127.0.0.1:3001",
   "http://127.0.0.1:3002",
-  "receipt24://login-callback"
+  "receipt24://login-callback",
+  # Production — also configure in Supabase Dashboard:
+  # https://app.receipt24.com/**,
+  # https://accountant.receipt24.com/**,
+  # https://admin.receipt24.com/**
 ]
 jwt_expiry = 3600
 enable_refresh_token_rotation = true

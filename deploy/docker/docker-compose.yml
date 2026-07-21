@@ -1,0 +1,16 @@
+# Local smoke-test for production nginx config.
+# Prerequisites: run ./scripts/build-web.sh first.
+#
+# Usage: docker compose -f deploy/docker/docker-compose.yml up --build
+
+services:
+  web:
+    build:
+      context: ../..
+      dockerfile: deploy/docker/Dockerfile
+    ports:
+      - "8080:80"
+    extra_hosts:
+      - "app.receipt24.com:127.0.0.1"
+      - "accountant.receipt24.com:127.0.0.1"
+      - "admin.receipt24.com:127.0.0.1"

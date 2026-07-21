@@ -1,0 +1,9 @@
+{
+  "name": "Receipt24 Admin",
+  "short_name": "R24 Admin",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0A1628",
+  "theme_color": "#1B4FD8",
+  "description": "Receipt24 Admin Dashboard"
+}

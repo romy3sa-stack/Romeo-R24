@@ -105,6 +105,17 @@ flutter pub get
 flutter run -d chrome
 ```
 
+### 6. Production deployment
+
+See [Deployment Guide](docs/deployment.md) for Supabase setup, Flutter web builds, domain configuration, and CI/CD.
+
+```bash
+# Configure secrets, then:
+bash scripts/inject-env.sh all
+bash scripts/build-web.sh all
+bash scripts/deploy-supabase.sh
+```
+
 ## Development Status
 
 | Phase | Status | Description |
@@ -125,7 +136,7 @@ flutter run -d chrome
 | Phase 14 | ✅ Complete | i18n persistence, French phases 8–15, shared locale provider |
 | Phase 15 | ✅ Complete | Theme mode, shared empty/error widgets, UI polish |
 | Phase 16 | ✅ Complete | Unit tests, testing checklist |
-| Phase 18 | ⏳ Pending | Deployment — production Supabase, Flutter builds, domains |
+| Phase 18 | ✅ Complete | Deployment — CI/CD, Docker/nginx, PostHog analytics |
 
 ## Documentation
 
@@ -135,6 +146,7 @@ flutter run -d chrome
 - [RLS Policies](docs/rls-policies.md)
 - [Storage Structure](docs/storage-structure.md)
 - [Environments](docs/environments.md)
+- [Deployment Guide](docs/deployment.md)
 - [Phase 1-2 Testing Checklist](docs/testing-checklist-phase1-2.md)
 - [Phase 8 Testing Checklist](docs/testing-checklist-phase8.md)
 - [Phase 9 Testing Checklist](docs/testing-checklist-phase9.md)
@@ -142,6 +154,7 @@ flutter run -d chrome
 - [Phase 11 Testing Checklist](docs/testing-checklist-phase11.md)
 - [Phase 12 Testing Checklist](docs/testing-checklist-phase12.md)
 - [Phase 13–16 Testing Checklist](docs/testing-checklist-phase13-16.md)
+- [Phase 18 Testing Checklist](docs/testing-checklist-phase18.md)
 
 ## Security
 

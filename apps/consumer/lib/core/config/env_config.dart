@@ -10,6 +10,11 @@ abstract final class EnvConfig {
 
   static String get appEnv => dotenv.env['APP_ENV'] ?? 'development';
 
+  static String get posthogApiKey => dotenv.env['POSTHOG_API_KEY'] ?? '';
+
+  static String get posthogHost =>
+      dotenv.env['POSTHOG_HOST'] ?? 'https://app.posthog.com';
+
   static bool get isDevelopment => appEnv == 'development';
   static bool get isProduction => appEnv == 'production';
 }

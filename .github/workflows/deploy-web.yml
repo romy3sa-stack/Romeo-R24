@@ -1,0 +1,82 @@
+name: Deploy Web
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: Target environment
+        required: true
+        default: production
+        type: choice
+        options:
+          - production
+          - testing
+  push:
+    branches: [main]
+    paths:
+      - 'apps/**'
+      - 'packages/receipt24_shared/**'
+      - 'scripts/build-web.sh'
+      - 'deploy/**'
+
+jobs:
+  build:
+    name: Build Flutter web (${{ inputs.environment || 'production' }})
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment || 'production' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Enable web
+        run: flutter config --enable-web
+
+      - name: Inject environment
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          APP_ENV: production
+          POSTHOG_API_KEY: ${{ secrets.POSTHOG_API_KEY }}
+          POSTHOG_HOST: ${{ secrets.POSTHOG_HOST }}
+        run: bash scripts/inject-env.sh all
+
+      - name: Build all web apps
+        run: bash scripts/build-web.sh all
+
+      - name: Upload web artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: receipt24-web-${{ github.sha }}
+          path: build/web/
+          retention-days: 14
+
+  docker:
+    name: Build Docker image
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download web artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: receipt24-web-${{ github.sha }}
+          path: build/web
+
+      - name: Build image
+        run: docker build -f deploy/docker/Dockerfile -t receipt24-web:${{ github.sha }} .
+
+      - name: Save image tarball
+        run: docker save receipt24-web:${{ github.sha }} | gzip > receipt24-web-image.tar.gz
+
+      - name: Upload Docker image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: receipt24-docker-${{ github.sha }}
+          path: receipt24-web-image.tar.gz
+          retention-days: 7

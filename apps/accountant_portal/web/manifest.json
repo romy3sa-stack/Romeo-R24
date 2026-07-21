@@ -1,0 +1,9 @@
+{
+  "name": "Receipt24 Accountant",
+  "short_name": "R24 Accountant",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0A1628",
+  "theme_color": "#1B4FD8",
+  "description": "Receipt24 Accountant Portal"
+}

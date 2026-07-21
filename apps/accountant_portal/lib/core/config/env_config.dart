@@ -7,4 +7,9 @@ abstract final class EnvConfig {
   static String get supabaseAnonKey => dotenv.env['SUPABASE_ANON_KEY'] ?? '';
 
   static String get appEnv => dotenv.env['APP_ENV'] ?? 'development';
+
+  static String get posthogApiKey => dotenv.env['POSTHOG_API_KEY'] ?? '';
+
+  static String get posthogHost =>
+      dotenv.env['POSTHOG_HOST'] ?? 'https://app.posthog.com';
 }
