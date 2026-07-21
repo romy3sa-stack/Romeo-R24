@@ -4,24 +4,31 @@ Production build verified. Follow these steps exactly.
 
 ## Fix 404 NOT_FOUND
 
-If you see `404: NOT_FOUND` on Vercel, the project is building from the **wrong folder**.
+If you see `404: NOT_FOUND` with an ID like `cpt1::...`, Vercel is serving an **empty or misconfigured build**. This repo ships a root `vercel.json` that points at `apps/web` — you should **not** override Output Directory in the dashboard.
 
-### Fix (2 minutes)
+### Fix (pick one approach)
 
-1. Open your project on Vercel → **Settings** → **General**
-2. Find **Root Directory** → click **Edit**
-3. Set to: `apps/web`
-4. Click **Save**
-5. Go to **Deployments** → latest deployment → **⋯** → **Redeploy**
+**Option A — recommended (simplest)**
+
+1. Vercel → **Settings** → **General** → **Root Directory** → set to `apps/web` → **Save**
+2. **Settings** → **Build & Development**:
+   - Framework Preset: **Next.js**
+   - Build Command: `npm run build` (default)
+   - Output Directory: **leave blank** (never set `.next` manually)
+3. **Deployments** → latest → **⋯** → **Redeploy**
+
+**Option B — build from repo root**
+
+Leave Root Directory empty (`.`). The root `vercel.json` uses `@vercel/next` on `apps/web/package.json`. Still clear any custom **Output Directory** in dashboard settings, then redeploy.
 
 ### Verify settings
 
 | Setting | Correct value |
 |---------|---------------|
-| Root Directory | `apps/web` |
+| Root Directory | `apps/web` (Option A) or `.` (Option B) |
 | Framework | Next.js |
-| Build Command | `npm run build` (default) |
-| Output Directory | *(leave default — do not set manually)* |
+| Build Command | `npm run build` (Option A) or default (Option B) |
+| Output Directory | **blank** — do not set `.next` or `apps/web/.next` |
 
 ### Environment variables (required)
 
@@ -99,7 +106,8 @@ Also add for local dev (optional):
 
 | Issue | Fix |
 |-------|-----|
-| Build fails on Vercel | Ensure Root Directory is `apps/web` |
+| `404: NOT_FOUND` on every page | Clear Output Directory in Vercel settings; redeploy (see above) |
+| Build fails on Vercel | Ensure Root Directory is `apps/web` or use root `vercel.json` |
 | Login redirects back to login | Add Vercel URL to Supabase redirect URLs |
 | "Email not confirmed" | Auto-confirm user or disable email confirmation |
-| 404 on `/dashboard` | Redeploy after env vars are set |
+| 404 on `/dashboard` only | Redeploy after env vars are set |
