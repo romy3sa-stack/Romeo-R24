@@ -29,14 +29,13 @@ export function LoginForm() {
       password,
     });
 
-    if (signInError) {
-      setError(mapAuthError(signInError.message, signInError.code));
-      setLoading(false);
-      return;
-    }
-
-    if (!data.session) {
-      setError('Sign in failed. No session was created. Please try again.');
+    if (signInError || !data.session) {
+      setError(
+        mapAuthError(
+          signInError?.message ?? 'Sign in failed. Please check your credentials.',
+          signInError?.code,
+        ),
+      );
       setLoading(false);
       return;
     }
