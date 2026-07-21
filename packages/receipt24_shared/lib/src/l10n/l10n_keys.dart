@@ -200,4 +200,37 @@ abstract final class L10nKeys {
   static const returnSaved = 'returnSaved';
   static const recordReturn = 'recordReturn';
   static const viewWarranty = 'viewWarranty';
+
+  // Accountant portal
+  static const accountantPortal = 'accountantPortal';
+  static const navDashboard = 'navDashboard';
+  static const navClients = 'navClients';
+  static const clients = 'clients';
+  static const clientDetails = 'clientDetails';
+  static const inviteClient = 'inviteClient';
+  static const clientInvited = 'clientInvited';
+  static const noClients = 'noClients';
+  static const noClientsHint = 'noClientsHint';
+  static const accessScope = 'accessScope';
+  static const accessStatus = 'accessStatus';
+  static const approved = 'approved';
+  static const pending = 'pending';
+  static const revoked = 'revoked';
+  static const viewReceipts = 'viewReceipts';
+  static const clientReceipts = 'clientReceipts';
+  static const addNotes = 'addNotes';
+  static const accountantNotes = 'accountantNotes';
+  static const notesSaved = 'notesSaved';
+  static const revokeAccess = 'revokeAccess';
+  static const accessRevoked = 'accessRevoked';
+  static const invitationLink = 'invitationLink';
+  static const copyLink = 'copyLink';
+  static const linkCopied = 'linkCopied';
+  static const notAnAccountant = 'notAnAccountant';
+  static const totalClients = 'totalClients';
+  static const pendingInvitations = 'pendingInvitations';
+  static const clientReceiptCount = 'clientReceiptCount';
+  static const scopeAllReceipts = 'scopeAllReceipts';
+  static const scopeBusinessOnly = 'scopeBusinessOnly';
+  static const scopeTaxRelated = 'scopeTaxRelated';
 }

@@ -212,6 +212,37 @@ class AppLocalizations {
   String get saveWarranty => t(L10nKeys.saveWarranty);
   String get recordReturn => t(L10nKeys.recordReturn);
   String get viewWarranty => t(L10nKeys.viewWarranty);
+  String get accountantPortal => t(L10nKeys.accountantPortal);
+  String get navDashboard => t(L10nKeys.navDashboard);
+  String get navClients => t(L10nKeys.navClients);
+  String get clients => t(L10nKeys.clients);
+  String get clientDetails => t(L10nKeys.clientDetails);
+  String get inviteClient => t(L10nKeys.inviteClient);
+  String get clientInvited => t(L10nKeys.clientInvited);
+  String get noClients => t(L10nKeys.noClients);
+  String get noClientsHint => t(L10nKeys.noClientsHint);
+  String get accessScope => t(L10nKeys.accessScope);
+  String get accessStatus => t(L10nKeys.accessStatus);
+  String get approved => t(L10nKeys.approved);
+  String get pending => t(L10nKeys.pending);
+  String get revoked => t(L10nKeys.revoked);
+  String get viewReceipts => t(L10nKeys.viewReceipts);
+  String get clientReceipts => t(L10nKeys.clientReceipts);
+  String get addNotes => t(L10nKeys.addNotes);
+  String get accountantNotes => t(L10nKeys.accountantNotes);
+  String get notesSaved => t(L10nKeys.notesSaved);
+  String get revokeAccess => t(L10nKeys.revokeAccess);
+  String get accessRevoked => t(L10nKeys.accessRevoked);
+  String get invitationLink => t(L10nKeys.invitationLink);
+  String get copyLink => t(L10nKeys.copyLink);
+  String get linkCopied => t(L10nKeys.linkCopied);
+  String get notAnAccountant => t(L10nKeys.notAnAccountant);
+  String get totalClients => t(L10nKeys.totalClients);
+  String get pendingInvitations => t(L10nKeys.pendingInvitations);
+  String get clientReceiptCount => t(L10nKeys.clientReceiptCount);
+  String get scopeAllReceipts => t(L10nKeys.scopeAllReceipts);
+  String get scopeBusinessOnly => t(L10nKeys.scopeBusinessOnly);
+  String get scopeTaxRelated => t(L10nKeys.scopeTaxRelated);
 
   static final Map<String, Map<String, String>> _translations = {
     'en': _en,
@@ -422,6 +453,37 @@ const _en = {
   'returnSaved': 'Return recorded',
   'recordReturn': 'Record return',
   'viewWarranty': 'View warranty',
+  'accountantPortal': 'Accountant Portal',
+  'navDashboard': 'Dashboard',
+  'navClients': 'Clients',
+  'clients': 'Clients',
+  'clientDetails': 'Client details',
+  'inviteClient': 'Invite client',
+  'clientInvited': 'Client invitation sent',
+  'noClients': 'No clients yet',
+  'noClientsHint': 'Invite clients to share their receipts with you.',
+  'accessScope': 'Access scope',
+  'accessStatus': 'Access status',
+  'approved': 'Approved',
+  'pending': 'Pending',
+  'revoked': 'Revoked',
+  'viewReceipts': 'View receipts',
+  'clientReceipts': 'Client receipts',
+  'addNotes': 'Add notes',
+  'accountantNotes': 'Accountant notes',
+  'notesSaved': 'Notes saved',
+  'revokeAccess': 'Revoke access',
+  'accessRevoked': 'Access revoked',
+  'invitationLink': 'Invitation link',
+  'copyLink': 'Copy link',
+  'linkCopied': 'Link copied',
+  'notAnAccountant': 'This portal is for accountants only.',
+  'totalClients': 'Total clients',
+  'pendingInvitations': 'Pending invitations',
+  'clientReceiptCount': 'Receipts',
+  'scopeAllReceipts': 'All receipts',
+  'scopeBusinessOnly': 'Business only',
+  'scopeTaxRelated': 'Tax-related only',
 };
 
 const _fr = {

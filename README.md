@@ -101,7 +101,8 @@ flutter run
 | Phase 6 | ✅ Complete | Expense categories, classification, duplicate review |
 | Phase 7 | ✅ Complete | Spending insights, charts, alerts, recurring detection |
 | Phase 8 | ✅ Complete | Warranties, returns, reminders, deadline tracking |
-| Phase 9+ | ⏳ Pending | Accountant portal, notifications, subscriptions, etc. |
+| Phase 9 | ✅ Complete | Accountant portal — clients, receipts, classification |
+| Phase 10+ | ⏳ Pending | Notifications, subscriptions, admin dashboard, etc. |
 
 ## Documentation
 
@@ -113,6 +114,7 @@ flutter run
 - [Environments](docs/environments.md)
 - [Phase 1-2 Testing Checklist](docs/testing-checklist-phase1-2.md)
 - [Phase 8 Testing Checklist](docs/testing-checklist-phase8.md)
+- [Phase 9 Testing Checklist](docs/testing-checklist-phase9.md)
 
 ## Security
 
