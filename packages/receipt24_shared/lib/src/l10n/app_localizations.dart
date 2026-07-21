@@ -158,6 +158,28 @@ class AppLocalizations {
   String get viewReceipt => t(L10nKeys.viewReceipt);
   String get filterByExpenseType => t(L10nKeys.filterByExpenseType);
   String get allTypes => t(L10nKeys.allTypes);
+  String get insightsTitle => t(L10nKeys.insightsTitle);
+  String get totalSpending => t(L10nKeys.totalSpending);
+  String get businessExpenses => t(L10nKeys.businessExpenses);
+  String get personalExpenses => t(L10nKeys.personalExpenses);
+  String get monthlyTrend => t(L10nKeys.monthlyTrend);
+  String get weeklyTrend => t(L10nKeys.weeklyTrend);
+  String get categoryBreakdown => t(L10nKeys.categoryBreakdown);
+  String get merchantBreakdown => t(L10nKeys.merchantBreakdown);
+  String get monthOverMonth => t(L10nKeys.monthOverMonth);
+  String get spendingAlerts => t(L10nKeys.spendingAlerts);
+  String get recurringExpenses => t(L10nKeys.recurringExpenses);
+  String get subscriptions => t(L10nKeys.subscriptions);
+  String get noInsightsData => t(L10nKeys.noInsightsData);
+  String get noInsightsHint => t(L10nKeys.noInsightsHint);
+  String get insightsDisclaimer => t(L10nKeys.insightsDisclaimer);
+  String get periodThisMonth => t(L10nKeys.periodThisMonth);
+  String get periodLastMonth => t(L10nKeys.periodLastMonth);
+  String get periodLast3Months => t(L10nKeys.periodLast3Months);
+  String get receiptsCount => t(L10nKeys.receiptsCount);
+  String get increase => t(L10nKeys.increase);
+  String get decrease => t(L10nKeys.decrease);
+  String get vsLastMonth => t(L10nKeys.vsLastMonth);
 
   static final Map<String, Map<String, String>> _translations = {
     'en': _en,
@@ -313,6 +335,29 @@ const _en = {
   'viewReceipt': 'View receipt',
   'filterByExpenseType': 'Filter by expense type',
   'allTypes': 'All types',
+  'insightsTitle': 'Spending insights',
+  'totalSpending': 'Total spending',
+  'businessExpenses': 'Business expenses',
+  'personalExpenses': 'Personal expenses',
+  'monthlyTrend': 'Monthly trend',
+  'weeklyTrend': 'Weekly trend',
+  'categoryBreakdown': 'By category',
+  'merchantBreakdown': 'By merchant',
+  'monthOverMonth': 'vs last month',
+  'spendingAlerts': 'Spending alerts',
+  'recurringExpenses': 'Recurring expenses',
+  'subscriptions': 'Possible subscriptions',
+  'noInsightsData': 'No spending data yet',
+  'noInsightsHint': 'Add receipts to see your spending insights here.',
+  'insightsDisclaimer':
+      'These insights are for information only and are not financial advice.',
+  'periodThisMonth': 'This month',
+  'periodLastMonth': 'Last month',
+  'periodLast3Months': 'Last 3 months',
+  'receiptsCount': 'receipts',
+  'increase': 'increase',
+  'decrease': 'decrease',
+  'vsLastMonth': 'compared to last month',
 };
 
 const _fr = {

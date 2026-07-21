@@ -142,4 +142,28 @@ abstract final class L10nKeys {
   static const viewReceipt = 'viewReceipt';
   static const filterByExpenseType = 'filterByExpenseType';
   static const allTypes = 'allTypes';
+
+  // Insights
+  static const insightsTitle = 'insightsTitle';
+  static const totalSpending = 'totalSpending';
+  static const businessExpenses = 'businessExpenses';
+  static const personalExpenses = 'personalExpenses';
+  static const monthlyTrend = 'monthlyTrend';
+  static const weeklyTrend = 'weeklyTrend';
+  static const categoryBreakdown = 'categoryBreakdown';
+  static const merchantBreakdown = 'merchantBreakdown';
+  static const monthOverMonth = 'monthOverMonth';
+  static const spendingAlerts = 'spendingAlerts';
+  static const recurringExpenses = 'recurringExpenses';
+  static const subscriptions = 'subscriptions';
+  static const noInsightsData = 'noInsightsData';
+  static const noInsightsHint = 'noInsightsHint';
+  static const insightsDisclaimer = 'insightsDisclaimer';
+  static const periodThisMonth = 'periodThisMonth';
+  static const periodLastMonth = 'periodLastMonth';
+  static const periodLast3Months = 'periodLast3Months';
+  static const receiptsCount = 'receiptsCount';
+  static const increase = 'increase';
+  static const decrease = 'decrease';
+  static const vsLastMonth = 'vsLastMonth';
 }
