@@ -20,7 +20,7 @@ CREATE TABLE public.users (
 );
 
 CREATE TABLE public.consumer_profiles (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL UNIQUE REFERENCES public.users(id) ON DELETE CASCADE,
   tax_profile_enabled BOOLEAN NOT NULL DEFAULT FALSE,
   accountant_sharing_enabled BOOLEAN NOT NULL DEFAULT TRUE,
@@ -42,7 +42,7 @@ CREATE TABLE public.consumer_profiles (
 );
 
 CREATE TABLE public.accountants (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL UNIQUE REFERENCES public.users(id) ON DELETE CASCADE,
   firm_name TEXT NOT NULL,
   professional_registration_number TEXT,
@@ -58,7 +58,7 @@ CREATE TABLE public.accountants (
 );
 
 CREATE TABLE public.accounting_firm_members (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   accountant_id UUID NOT NULL REFERENCES public.accountants(id) ON DELETE CASCADE,
   user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
   firm_role public.firm_role NOT NULL DEFAULT 'accountant',
@@ -78,7 +78,7 @@ CREATE TABLE public.accounting_firm_members (
 );
 
 CREATE TABLE public.accountant_client_access (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   accountant_id UUID NOT NULL REFERENCES public.accountants(id) ON DELETE CASCADE,
   consumer_user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
   access_status public.access_status NOT NULL DEFAULT 'pending',
@@ -98,7 +98,7 @@ CREATE TABLE public.accountant_client_access (
 
 -- Merchants: receipt data only — no user accounts or authentication
 CREATE TABLE public.merchants (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   merchant_name TEXT NOT NULL,
   trading_name TEXT,
   business_category TEXT,

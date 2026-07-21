@@ -2,7 +2,7 @@
 -- Phase 2 — Step 4
 
 CREATE TABLE public.warranties (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   receipt_id UUID NOT NULL REFERENCES public.receipts(id) ON DELETE CASCADE,
   receipt_item_id UUID REFERENCES public.receipt_items(id) ON DELETE SET NULL,
   consumer_user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
@@ -18,7 +18,7 @@ CREATE TABLE public.warranties (
 );
 
 CREATE TABLE public.returns_and_refunds (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   receipt_id UUID NOT NULL REFERENCES public.receipts(id) ON DELETE CASCADE,
   receipt_item_id UUID REFERENCES public.receipt_items(id) ON DELETE SET NULL,
   consumer_user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
@@ -35,7 +35,7 @@ CREATE TABLE public.returns_and_refunds (
 );
 
 CREATE TABLE public.notifications (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
   notification_type public.notification_type NOT NULL DEFAULT 'general',
   title TEXT NOT NULL,
@@ -47,7 +47,7 @@ CREATE TABLE public.notifications (
 );
 
 CREATE TABLE public.subscriptions (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES public.users(id) ON DELETE CASCADE,
   accountant_id UUID REFERENCES public.accountants(id) ON DELETE CASCADE,
   plan_name TEXT NOT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE public.subscriptions (
 );
 
 CREATE TABLE public.support_tickets (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
   ticket_number TEXT NOT NULL UNIQUE,
   subject TEXT NOT NULL,
@@ -82,7 +82,7 @@ CREATE TABLE public.support_tickets (
 );
 
 CREATE TABLE public.audit_logs (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES public.users(id) ON DELETE SET NULL,
   action_type TEXT NOT NULL,
   record_type TEXT NOT NULL,
@@ -109,7 +109,7 @@ CREATE INDEX idx_audit_logs_created ON public.audit_logs(created_at);
 
 -- Content management tables for admin (Phase 12 prep)
 CREATE TABLE public.countries (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   country_code TEXT NOT NULL UNIQUE,
   country_name TEXT NOT NULL,
   is_active BOOLEAN NOT NULL DEFAULT TRUE,
@@ -118,7 +118,7 @@ CREATE TABLE public.countries (
 );
 
 CREATE TABLE public.currencies (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   currency_code TEXT NOT NULL UNIQUE,
   currency_name TEXT NOT NULL,
   symbol TEXT,
@@ -128,7 +128,7 @@ CREATE TABLE public.currencies (
 );
 
 CREATE TABLE public.languages (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   language_code TEXT NOT NULL UNIQUE,
   language_name TEXT NOT NULL,
   is_active BOOLEAN NOT NULL DEFAULT TRUE,
@@ -137,7 +137,7 @@ CREATE TABLE public.languages (
 );
 
 CREATE TABLE public.legal_content (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   content_type TEXT NOT NULL,
   language_code TEXT NOT NULL DEFAULT 'en',
   title TEXT NOT NULL,
@@ -150,7 +150,7 @@ CREATE TABLE public.legal_content (
 );
 
 CREATE TABLE public.notification_templates (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   template_key TEXT NOT NULL,
   language_code TEXT NOT NULL DEFAULT 'en',
   channel TEXT NOT NULL DEFAULT 'email',

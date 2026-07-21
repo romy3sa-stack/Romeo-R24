@@ -2,7 +2,7 @@
 -- Phase 2 — Step 3
 
 CREATE TABLE public.receipt_categories (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   category_name TEXT NOT NULL UNIQUE,
   category_icon TEXT,
   category_colour TEXT,
@@ -12,7 +12,7 @@ CREATE TABLE public.receipt_categories (
 );
 
 CREATE TABLE public.expense_categories (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   category_name TEXT NOT NULL UNIQUE,
   category_code TEXT NOT NULL UNIQUE,
   tax_deductible BOOLEAN NOT NULL DEFAULT FALSE,
@@ -23,7 +23,7 @@ CREATE TABLE public.expense_categories (
 );
 
 CREATE TABLE public.receipt_uploads (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
   file_url TEXT NOT NULL,
   file_type public.file_type NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE public.receipt_uploads (
 );
 
 CREATE TABLE public.receipts (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   consumer_user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
   merchant_id UUID REFERENCES public.merchants(id) ON DELETE SET NULL,
   merchant_name_raw TEXT,
@@ -73,7 +73,7 @@ ALTER TABLE public.receipt_uploads
   FOREIGN KEY (linked_receipt_id) REFERENCES public.receipts(id) ON DELETE SET NULL;
 
 CREATE TABLE public.receipt_items (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   receipt_id UUID NOT NULL REFERENCES public.receipts(id) ON DELETE CASCADE,
   item_name TEXT NOT NULL,
   item_description TEXT,
@@ -91,7 +91,7 @@ CREATE TABLE public.receipt_items (
 );
 
 CREATE TABLE public.receipt_expense_classification (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   receipt_id UUID NOT NULL REFERENCES public.receipts(id) ON DELETE CASCADE,
   consumer_user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
   expense_category_id UUID REFERENCES public.expense_categories(id) ON DELETE SET NULL,

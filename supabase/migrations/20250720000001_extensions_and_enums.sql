@@ -1,7 +1,7 @@
 -- Receipt24: Extensions and enumerated types
 -- Phase 2 — Step 1
 
-CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA extensions;
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
 -- User roles (no merchant roles)

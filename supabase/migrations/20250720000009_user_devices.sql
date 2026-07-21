@@ -1,7 +1,7 @@
 -- Receipt24: User device/session tracking (Phase 13)
 
 CREATE TABLE public.user_devices (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID NOT NULL REFERENCES public.users(id) ON DELETE CASCADE,
   device_label TEXT,
   platform TEXT NOT NULL DEFAULT 'unknown',
