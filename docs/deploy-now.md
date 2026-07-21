@@ -46,7 +46,7 @@ This applies all database tables, security rules, and 7 edge functions.
 
 ### 1. Import the project
 
-Open: **https://vercel.com/new**
+Open: **https://vercel.com/new/import?s=https://github.com/romy3sa-stack/Romeo-R24**
 
 - **Import Git Repository:** `romy3sa-stack/Romeo-R24`
 - **Root Directory:** `apps/web` ← important
