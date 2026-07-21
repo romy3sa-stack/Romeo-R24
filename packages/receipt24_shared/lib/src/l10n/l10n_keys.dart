@@ -89,4 +89,40 @@ abstract final class L10nKeys {
   static const registrationSuccess = 'registrationSuccess';
   static const loginFailed = 'loginFailed';
   static const genericError = 'genericError';
+
+  // Receipt capture & wallet
+  static const captureTitle = 'captureTitle';
+  static const captureCamera = 'captureCamera';
+  static const captureGallery = 'captureGallery';
+  static const capturePdf = 'capturePdf';
+  static const captureManual = 'captureManual';
+  static const captureQr = 'captureQr';
+  static const captureEmail = 'captureEmail';
+  static const emailForwardingHint = 'emailForwardingHint';
+  static const reviewTitle = 'reviewTitle';
+  static const reviewSubtitle = 'reviewSubtitle';
+  static const saveReceipt = 'saveReceipt';
+  static const merchantName = 'merchantName';
+  static const transactionDate = 'transactionDate';
+  static const totalAmount = 'totalAmount';
+  static const taxAmount = 'taxAmount';
+  static const receiptNumber = 'receiptNumber';
+  static const paymentMethodLabel = 'paymentMethodLabel';
+  static const itemsPurchased = 'itemsPurchased';
+  static const lowConfidence = 'lowConfidence';
+  static const processingReceipt = 'processingReceipt';
+  static const receiptSaved = 'receiptSaved';
+  static const filterSort = 'filterSort';
+  static const sortNewest = 'sortNewest';
+  static const sortOldest = 'sortOldest';
+  static const sortHighest = 'sortHighest';
+  static const sortLowest = 'sortLowest';
+  static const duplicateWarning = 'duplicateWarning';
+  static const receiptDetails = 'receiptDetails';
+  static const ocrConfidence = 'ocrConfidence';
+  static const addItem = 'addItem';
+  static const removeItem = 'removeItem';
+  static const qrScanTitle = 'qrScanTitle';
+  static const qrScanHint = 'qrScanHint';
+  static const qrResult = 'qrResult';
 }

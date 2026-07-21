@@ -109,6 +109,40 @@ class AppLocalizations {
   String get registrationSuccess => t(L10nKeys.registrationSuccess);
   String get loginFailed => t(L10nKeys.loginFailed);
   String get genericError => t(L10nKeys.genericError);
+  String get captureTitle => t(L10nKeys.captureTitle);
+  String get captureCamera => t(L10nKeys.captureCamera);
+  String get captureGallery => t(L10nKeys.captureGallery);
+  String get capturePdf => t(L10nKeys.capturePdf);
+  String get captureManual => t(L10nKeys.captureManual);
+  String get captureQr => t(L10nKeys.captureQr);
+  String get captureEmail => t(L10nKeys.captureEmail);
+  String get emailForwardingHint => t(L10nKeys.emailForwardingHint);
+  String get reviewTitle => t(L10nKeys.reviewTitle);
+  String get reviewSubtitle => t(L10nKeys.reviewSubtitle);
+  String get saveReceipt => t(L10nKeys.saveReceipt);
+  String get merchantName => t(L10nKeys.merchantName);
+  String get transactionDate => t(L10nKeys.transactionDate);
+  String get totalAmount => t(L10nKeys.totalAmount);
+  String get taxAmount => t(L10nKeys.taxAmount);
+  String get receiptNumber => t(L10nKeys.receiptNumber);
+  String get paymentMethodLabel => t(L10nKeys.paymentMethodLabel);
+  String get itemsPurchased => t(L10nKeys.itemsPurchased);
+  String get lowConfidence => t(L10nKeys.lowConfidence);
+  String get processingReceipt => t(L10nKeys.processingReceipt);
+  String get receiptSaved => t(L10nKeys.receiptSaved);
+  String get filterSort => t(L10nKeys.filterSort);
+  String get sortNewest => t(L10nKeys.sortNewest);
+  String get sortOldest => t(L10nKeys.sortOldest);
+  String get sortHighest => t(L10nKeys.sortHighest);
+  String get sortLowest => t(L10nKeys.sortLowest);
+  String get duplicateWarning => t(L10nKeys.duplicateWarning);
+  String get receiptDetails => t(L10nKeys.receiptDetails);
+  String get ocrConfidence => t(L10nKeys.ocrConfidence);
+  String get addItem => t(L10nKeys.addItem);
+  String get removeItem => t(L10nKeys.removeItem);
+  String get qrScanTitle => t(L10nKeys.qrScanTitle);
+  String get qrScanHint => t(L10nKeys.qrScanHint);
+  String get qrResult => t(L10nKeys.qrResult);
 
   static final Map<String, Map<String, String>> _translations = {
     'en': _en,
@@ -215,6 +249,40 @@ const _en = {
   'registrationSuccess': 'Account created successfully',
   'loginFailed': 'Login failed. Please check your credentials.',
   'genericError': 'Something went wrong. Please try again.',
+  'captureTitle': 'Add a receipt',
+  'captureCamera': 'Take photo',
+  'captureGallery': 'Upload image',
+  'capturePdf': 'Upload PDF',
+  'captureManual': 'Enter manually',
+  'captureQr': 'Scan QR code',
+  'captureEmail': 'Email import',
+  'emailForwardingHint': 'Forward receipts to your unique address:',
+  'reviewTitle': 'Review receipt',
+  'reviewSubtitle': 'Check and correct the extracted details before saving.',
+  'saveReceipt': 'Save receipt',
+  'merchantName': 'Merchant name',
+  'transactionDate': 'Transaction date',
+  'totalAmount': 'Total amount',
+  'taxAmount': 'Tax amount',
+  'receiptNumber': 'Receipt number',
+  'paymentMethodLabel': 'Payment method',
+  'itemsPurchased': 'Items purchased',
+  'lowConfidence': 'Low confidence — please verify',
+  'processingReceipt': 'Processing receipt...',
+  'receiptSaved': 'Receipt saved successfully',
+  'filterSort': 'Filter & sort',
+  'sortNewest': 'Newest first',
+  'sortOldest': 'Oldest first',
+  'sortHighest': 'Highest amount',
+  'sortLowest': 'Lowest amount',
+  'duplicateWarning': 'Possible duplicate detected',
+  'receiptDetails': 'Receipt details',
+  'ocrConfidence': 'OCR confidence',
+  'addItem': 'Add item',
+  'removeItem': 'Remove',
+  'qrScanTitle': 'Scan QR code',
+  'qrScanHint': 'Point your camera at a QR code on the receipt',
+  'qrResult': 'QR code detected',
 };
 
 const _fr = {

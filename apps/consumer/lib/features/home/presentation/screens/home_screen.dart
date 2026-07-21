@@ -6,12 +6,7 @@ import 'package:receipt24_shared/receipt24_shared.dart';
 import '../../../../core/auth/auth_providers.dart';
 import '../../../../core/l10n/locale_provider.dart';
 import '../../../../core/widgets/receipt24_widgets.dart';
-
-final homeStatsProvider = FutureProvider<Map<String, dynamic>>((ref) async {
-  final user = ref.watch(currentUserProvider);
-  if (user == null) return {};
-  return ref.read(authServiceProvider).getHomeStats(user.id);
-});
+import '../../providers/receipt_providers.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key, required this.child});
@@ -136,7 +131,7 @@ class HomeScreen extends ConsumerWidget {
               _ActionChip(
                 icon: Icons.edit_note,
                 label: l10n.addManually,
-                onTap: () => context.go('/home/scan'),
+                onTap: () => context.push('/receipts/manual'),
               ),
               const SizedBox(height: Receipt24Spacing.lg),
               statsAsync.when(
@@ -182,27 +177,7 @@ class HomeScreen extends ConsumerWidget {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
               const SizedBox(height: Receipt24Spacing.sm),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(Receipt24Spacing.xl),
-                  child: Column(
-                    children: [
-                      Icon(Icons.receipt_long,
-                          size: 48,
-                          color: Colors.grey.shade400),
-                      const SizedBox(height: Receipt24Spacing.sm),
-                      Text(l10n.noReceiptsYet,
-                          style: Theme.of(context).textTheme.titleSmall),
-                      Text(
-                        l10n.noReceiptsHint,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            color: Color(Receipt24Colors.textSecondary)),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              _RecentReceiptsSection(),
             ],
           ),
         ),
@@ -245,6 +220,56 @@ class _ActionChip extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _RecentReceiptsSection extends ConsumerWidget {
+  const _RecentReceiptsSection();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = context.l10n;
+    final receiptsAsync = ref.watch(receiptsListProvider);
+
+    return receiptsAsync.when(
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (_, __) => const SizedBox.shrink(),
+      data: (receipts) {
+        if (receipts.isEmpty) {
+          return Card(
+            child: Padding(
+              padding: const EdgeInsets.all(Receipt24Spacing.xl),
+              child: Column(
+                children: [
+                  Icon(Icons.receipt_long,
+                      size: 48, color: Colors.grey.shade400),
+                  const SizedBox(height: Receipt24Spacing.sm),
+                  Text(l10n.noReceiptsYet,
+                      style: Theme.of(context).textTheme.titleSmall),
+                  Text(
+                    l10n.noReceiptsHint,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        color: Color(Receipt24Colors.textSecondary)),
+                  ),
+                ],
+              ),
+            ),
+          );
+        }
+
+        return Column(
+          children: receipts.take(5).map((r) {
+            return ListTile(
+              leading: const CircleAvatar(child: Icon(Icons.receipt)),
+              title: Text(r.displayMerchant),
+              subtitle: Text(r.totalAmount?.toStringAsFixed(2) ?? '—'),
+              onTap: () => context.push('/receipts/${r.id}'),
+            );
+          }).toList(),
+        );
+      },
     );
   }
 }

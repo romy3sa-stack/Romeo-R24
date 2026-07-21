@@ -96,8 +96,9 @@ flutter run
 | Phase 1 | ✅ Complete | Platform foundation, roles, auth architecture |
 | Phase 2 | ✅ Complete | Database schema, RLS, storage buckets |
 | Phase 3 | ✅ Complete | Auth screens, onboarding, home shell |
-| Phase 4 | 🔄 In progress | Consumer dashboard (home shell started) |
-| Phase 5+ | ⏳ Pending | Receipt capture, expenses, insights, etc. |
+| Phase 4 | ✅ Complete | Consumer dashboard, receipt wallet, details |
+| Phase 5 | ✅ Complete | Camera, upload, PDF, manual, OCR review (mock OCR) |
+| Phase 6+ | ⏳ Pending | Expenses, insights, accountant portal, etc. |
 
 ## Documentation
 

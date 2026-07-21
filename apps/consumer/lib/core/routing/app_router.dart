@@ -2,7 +2,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:receipt24_shared/receipt24_shared.dart';
 
-import '../../features/auth/presentation/screens/forgot_password_screen.dart';
 import '../../features/auth/presentation/screens/accountant_register_screen.dart';
 import '../../features/auth/presentation/screens/consumer_register_screen.dart';
 import '../../features/auth/presentation/screens/forgot_password_screen.dart';
@@ -13,6 +12,12 @@ import '../../features/home/presentation/screens/profile_screen.dart';
 import '../../features/home/presentation/screens/receipts_placeholder_screen.dart';
 import '../../features/legal/presentation/screens/legal_content_screen.dart';
 import '../../features/onboarding/presentation/screens/onboarding_screen.dart';
+import '../../features/receipts/presentation/screens/manual_entry_screen.dart';
+import '../../features/receipts/presentation/screens/qr_scan_screen.dart';
+import '../../features/receipts/presentation/screens/receipt_detail_screen.dart';
+import '../../features/receipts/presentation/screens/receipt_review_screen.dart';
+import '../../features/receipts/presentation/screens/receipt_wallet_screen.dart';
+import '../../features/receipts/presentation/screens/scan_hub_screen.dart';
 import '../auth/auth_providers.dart';
 import '../auth/auth_state.dart';
 
@@ -98,6 +103,28 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: '/legal/terms',
         builder: (context, state) => const LegalContentScreen(type: 'terms'),
       ),
+      GoRoute(
+        path: '/receipts/scan',
+        builder: (context, state) => const ScanHubScreen(),
+      ),
+      GoRoute(
+        path: '/receipts/review',
+        builder: (context, state) => const ReceiptReviewScreen(),
+      ),
+      GoRoute(
+        path: '/receipts/manual',
+        builder: (context, state) => const ManualEntryScreen(),
+      ),
+      GoRoute(
+        path: '/receipts/qr-scan',
+        builder: (context, state) => const QrScanScreen(),
+      ),
+      GoRoute(
+        path: '/receipts/:id',
+        builder: (context, state) => ReceiptDetailScreen(
+          receiptId: state.pathParameters['id']!,
+        ),
+      ),
       ShellRoute(
         builder: (context, state, child) => HomeShell(child: child),
         routes: [
@@ -107,11 +134,11 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           ),
           GoRoute(
             path: '/home/receipts',
-            builder: (context, state) => const ReceiptsPlaceholderScreen(),
+            builder: (context, state) => const ReceiptWalletScreen(),
           ),
           GoRoute(
             path: '/home/scan',
-            builder: (context, state) => const ScanPlaceholderScreen(),
+            builder: (context, state) => const ScanHubScreen(),
           ),
           GoRoute(
             path: '/home/insights',
