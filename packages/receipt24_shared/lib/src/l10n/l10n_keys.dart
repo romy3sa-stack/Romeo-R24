@@ -320,4 +320,20 @@ abstract final class L10nKeys {
   static const noPendingVerifications = 'noPendingVerifications';
   static const noTickets = 'noTickets';
   static const noAuditLogs = 'noAuditLogs';
+
+  // Security & appearance (Phase 13–15)
+  static const securitySettings = 'securitySettings';
+  static const mfaComingSoon = 'mfaComingSoon';
+  static const mfaDescription = 'mfaDescription';
+  static const activeDevices = 'activeDevices';
+  static const noDevices = 'noDevices';
+  static const loginHistory = 'loginHistory';
+  static const noLoginHistory = 'noLoginHistory';
+  static const retry = 'retry';
+  static const appearance = 'appearance';
+  static const themeMode = 'themeMode';
+  static const themeSystem = 'themeSystem';
+  static const themeLight = 'themeLight';
+  static const themeDark = 'themeDark';
+  static const comingSoon = 'comingSoon';
 }

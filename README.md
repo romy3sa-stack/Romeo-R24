@@ -89,6 +89,22 @@ flutter pub get
 flutter run
 ```
 
+### 4. Run the accountant portal
+
+```bash
+cd apps/accountant_portal
+flutter pub get
+flutter run -d chrome
+```
+
+### 5. Run the admin dashboard
+
+```bash
+cd apps/admin_dashboard
+flutter pub get
+flutter run -d chrome
+```
+
 ## Development Status
 
 | Phase | Status | Description |
@@ -105,7 +121,11 @@ flutter run
 | Phase 10 | ✅ Complete | In-app notifications, prefs, reminders, edge functions |
 | Phase 11 | ✅ Complete | Stripe subscriptions, plans, checkout, webhook |
 | Phase 12 | ✅ Complete | Admin dashboard — users, verification, support, audit |
-| Phase 13+ | ⏳ Pending | Security polish, i18n, UI polish, testing, deployment |
+| Phase 13 | ✅ Complete | Security — login audit, devices, signed URLs, security screen |
+| Phase 14 | ✅ Complete | i18n persistence, French phases 8–15, shared locale provider |
+| Phase 15 | ✅ Complete | Theme mode, shared empty/error widgets, UI polish |
+| Phase 16 | ✅ Complete | Unit tests, testing checklist |
+| Phase 18 | ⏳ Pending | Deployment — production Supabase, Flutter builds, domains |
 
 ## Documentation
 
@@ -121,6 +141,7 @@ flutter run
 - [Phase 10 Testing Checklist](docs/testing-checklist-phase10.md)
 - [Phase 11 Testing Checklist](docs/testing-checklist-phase11.md)
 - [Phase 12 Testing Checklist](docs/testing-checklist-phase12.md)
+- [Phase 13–16 Testing Checklist](docs/testing-checklist-phase13-16.md)
 
 ## Security
 

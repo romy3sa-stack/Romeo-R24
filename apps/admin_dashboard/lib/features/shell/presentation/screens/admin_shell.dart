@@ -7,7 +7,7 @@ import 'package:receipt24_shared/receipt24_shared.dart';
 import '../../../core/auth/auth_providers.dart';
 import '../../../core/l10n/locale_provider.dart';
 import '../../../core/widgets/admin_widgets.dart';
-import '../../admin/providers/admin_providers.dart';
+import '../../../admin/providers/admin_providers.dart';
 
 class AdminShell extends ConsumerWidget {
   const AdminShell({super.key, required this.child});
@@ -401,9 +401,18 @@ class AuditScreen extends ConsumerWidget {
       appBar: AppBar(title: Text(l10n.navAuditLogs)),
       body: logsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (_, __) => Center(child: Text(l10n.genericError)),
+        error: (_, __) => ErrorStateView(
+          message: l10n.genericError,
+          onRetry: () => ref.invalidate(auditLogsProvider),
+          retryLabel: l10n.retry,
+        ),
         data: (logs) {
-          if (logs.isEmpty) return Center(child: Text(l10n.noAuditLogs));
+          if (logs.isEmpty) {
+            return EmptyStateView(
+              icon: Icons.history,
+              title: l10n.noAuditLogs,
+            );
+          }
           return ListView.builder(
             itemCount: logs.length,
             itemBuilder: (context, i) {
@@ -428,6 +437,8 @@ class ProfileScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final l10n = context.l10n;
     final auth = ref.watch(authStateProvider).valueOrNull;
+    final locale = ref.watch(localeProvider);
+    final themeMode = ref.watch(themeModeProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navProfile)),
@@ -441,6 +452,55 @@ class ProfileScreen extends ConsumerWidget {
           ListTile(
             title: const Text('Role'),
             trailing: Text(auth?.role?.value ?? ''),
+          ),
+          ListTile(
+            leading: const Icon(Icons.language),
+            title: Text(l10n.language),
+            trailing: DropdownButton<String>(
+              value: locale,
+              underline: const SizedBox.shrink(),
+              items: SupportedLanguages.languages.entries
+                  .map((e) =>
+                      DropdownMenuItem(value: e.key, child: Text(e.value)))
+                  .toList(),
+              onChanged: (v) async {
+                if (v == null) return;
+                await ref.read(localeProvider.notifier).setLocale(v);
+                final user = ref.read(currentUserProvider);
+                if (user != null) {
+                  await ref
+                      .read(authServiceProvider)
+                      .updatePreferredLanguage(user.id, v);
+                }
+              },
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.palette_outlined),
+            title: Text(l10n.themeMode),
+            trailing: DropdownButton<ThemeMode>(
+              value: themeMode,
+              underline: const SizedBox.shrink(),
+              items: [
+                DropdownMenuItem(
+                  value: ThemeMode.system,
+                  child: Text(l10n.themeSystem),
+                ),
+                DropdownMenuItem(
+                  value: ThemeMode.light,
+                  child: Text(l10n.themeLight),
+                ),
+                DropdownMenuItem(
+                  value: ThemeMode.dark,
+                  child: Text(l10n.themeDark),
+                ),
+              ],
+              onChanged: (mode) {
+                if (mode != null) {
+                  ref.read(themeModeProvider.notifier).setThemeMode(mode);
+                }
+              },
+            ),
           ),
           ListTile(
             leading: const Icon(Icons.logout, color: Color(Receipt24Colors.error)),

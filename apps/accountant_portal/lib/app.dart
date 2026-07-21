@@ -13,14 +13,20 @@ class AccountantPortalApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final router = ref.watch(appRouterProvider);
-    ref.watch(localeProvider);
+    final locale = ref.watch(localeProvider);
+    final themeMode = ref.watch(themeModeProvider);
 
     return MaterialApp.router(
       title: '${Receipt24Strings.appName} — Accountant',
       debugShowCheckedModeBanner: false,
+      locale: Locale(locale),
       theme: AppTheme.light.copyWith(
         textTheme: GoogleFonts.interTextTheme(AppTheme.light.textTheme),
       ),
+      darkTheme: AppTheme.dark.copyWith(
+        textTheme: GoogleFonts.interTextTheme(AppTheme.dark.textTheme),
+      ),
+      themeMode: themeMode,
       routerConfig: router,
     );
   }

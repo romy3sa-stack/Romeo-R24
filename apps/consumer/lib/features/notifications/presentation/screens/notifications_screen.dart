@@ -128,26 +128,17 @@ class NotificationsScreen extends ConsumerWidget {
             notificationsAsync.when(
               loading: () =>
                   const Center(child: CircularProgressIndicator()),
-              error: (_, __) => Center(child: Text(l10n.genericError)),
+              error: (_, __) => ErrorStateView(
+                message: l10n.genericError,
+                onRetry: () => ref.invalidate(notificationsListProvider),
+                retryLabel: l10n.retry,
+              ),
               data: (notifications) {
                 if (notifications.isEmpty) {
-                  return Padding(
-                    padding: const EdgeInsets.all(Receipt24Spacing.xl),
-                    child: Column(
-                      children: [
-                        Icon(Icons.notifications_none,
-                            size: 64, color: Colors.grey.shade400),
-                        const SizedBox(height: Receipt24Spacing.sm),
-                        Text(l10n.noNotifications,
-                            style: Theme.of(context).textTheme.titleSmall),
-                        Text(
-                          l10n.noNotificationsHint,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              color: Color(Receipt24Colors.textSecondary)),
-                        ),
-                      ],
-                    ),
+                  return EmptyStateView(
+                    icon: Icons.notifications_none,
+                    title: l10n.noNotifications,
+                    message: l10n.noNotificationsHint,
                   );
                 }
 

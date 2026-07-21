@@ -43,28 +43,19 @@ class ReceiptWalletScreen extends ConsumerWidget {
       ),
       body: receiptsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (_, __) => Center(child: Text(l10n.genericError)),
+        error: (_, __) => ErrorStateView(
+          message: l10n.genericError,
+          onRetry: () => ref.invalidate(receiptsListProvider),
+          retryLabel: l10n.retry,
+        ),
         data: (receipts) {
           if (receipts.isEmpty) {
-            return Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.receipt_long,
-                      size: 64, color: Colors.grey.shade400),
-                  const SizedBox(height: Receipt24Spacing.md),
-                  Text(l10n.noReceiptsYet),
-                  Text(l10n.noReceiptsHint,
-                      style: const TextStyle(
-                          color: Color(Receipt24Colors.textSecondary))),
-                  const SizedBox(height: Receipt24Spacing.lg),
-                  ElevatedButton.icon(
-                    onPressed: () => context.push('/receipts/scan'),
-                    icon: const Icon(Icons.add),
-                    label: Text(l10n.scanReceipt),
-                  ),
-                ],
-              ),
+            return EmptyStateView(
+              icon: Icons.receipt_long,
+              title: l10n.noReceiptsYet,
+              message: l10n.noReceiptsHint,
+              actionLabel: l10n.scanReceipt,
+              onAction: () => context.push('/receipts/scan'),
             );
           }
 

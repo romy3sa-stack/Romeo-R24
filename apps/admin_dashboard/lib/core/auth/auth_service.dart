@@ -42,5 +42,12 @@ class AuthService {
     return _client.auth.signInWithPassword(email: email, password: password);
   }
 
+  Future<void> updatePreferredLanguage(String userId, String language) async {
+    await _client
+        .from('users')
+        .update({'preferred_language': language})
+        .eq('id', userId);
+  }
+
   Future<void> signOut() => _client.auth.signOut();
 }

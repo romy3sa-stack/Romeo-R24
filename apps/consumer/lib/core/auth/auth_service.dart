@@ -137,6 +137,13 @@ class AuthService {
     return url;
   }
 
+  Future<void> updatePreferredLanguage(String userId, String language) async {
+    await _client
+        .from('users')
+        .update({'preferred_language': language})
+        .eq('id', userId);
+  }
+
   Future<AuthResponse> signIn({
     required String email,
     required String password,

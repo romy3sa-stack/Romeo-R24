@@ -39,34 +39,19 @@ class ClientsScreen extends ConsumerWidget {
       ),
       body: clientsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (_, __) => Center(child: Text(l10n.genericError)),
+        error: (_, __) => ErrorStateView(
+          message: l10n.genericError,
+          onRetry: () => ref.invalidate(clientsListProvider),
+          retryLabel: l10n.retry,
+        ),
         data: (clients) {
           if (clients.isEmpty) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(Receipt24Spacing.xl),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.people_outline,
-                        size: 64, color: Colors.grey.shade400),
-                    const SizedBox(height: Receipt24Spacing.sm),
-                    Text(l10n.noClients,
-                        style: Theme.of(context).textTheme.titleSmall),
-                    Text(
-                      l10n.noClientsHint,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                          color: Color(Receipt24Colors.textSecondary)),
-                    ),
-                    const SizedBox(height: Receipt24Spacing.lg),
-                    PrimaryButton(
-                      label: l10n.inviteClient,
-                      onPressed: () => context.push('/clients/invite'),
-                    ),
-                  ],
-                ),
-              ),
+            return EmptyStateView(
+              icon: Icons.people_outline,
+              title: l10n.noClients,
+              message: l10n.noClientsHint,
+              actionLabel: l10n.inviteClient,
+              onAction: () => context.push('/clients/invite'),
             );
           }
 

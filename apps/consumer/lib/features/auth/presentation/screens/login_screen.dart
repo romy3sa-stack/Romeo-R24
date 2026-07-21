@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -7,6 +8,7 @@ import '../../../../core/auth/auth_providers.dart';
 import '../../../../core/l10n/locale_provider.dart';
 import '../../../../core/utils/form_validators.dart';
 import '../../../../core/widgets/receipt24_widgets.dart';
+import '../../../security/providers/security_providers.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -35,10 +37,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     setState(() => _isLoading = true);
 
     try {
-      await ref.read(authServiceProvider).signIn(
+      final response = await ref.read(authServiceProvider).signIn(
             email: _emailController.text.trim(),
             password: _passwordController.text,
           );
+      final userId = response.user?.id;
+      if (userId != null) {
+        await ref.read(securityServiceProvider).logLoginEvent(
+              userId,
+              platform: kIsWeb ? 'web' : 'mobile',
+            );
+      }
     } catch (_) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

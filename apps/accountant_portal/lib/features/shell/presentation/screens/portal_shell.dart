@@ -136,6 +136,8 @@ class ProfileScreen extends ConsumerWidget {
     final l10n = context.l10n;
     final auth = ref.watch(authStateProvider).valueOrNull;
     final profileAsync = ref.watch(accountantProfileProvider);
+    final locale = ref.watch(localeProvider);
+    final themeMode = ref.watch(themeModeProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.navProfile)),
@@ -170,6 +172,56 @@ class ProfileScreen extends ConsumerWidget {
                 ],
               );
             },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.language),
+            title: Text(l10n.language),
+            trailing: DropdownButton<String>(
+              value: locale,
+              underline: const SizedBox.shrink(),
+              items: SupportedLanguages.languages.entries
+                  .map((e) =>
+                      DropdownMenuItem(value: e.key, child: Text(e.value)))
+                  .toList(),
+              onChanged: (v) async {
+                if (v == null) return;
+                await ref.read(localeProvider.notifier).setLocale(v);
+                final user = ref.read(currentUserProvider);
+                if (user != null) {
+                  await ref
+                      .read(authServiceProvider)
+                      .updatePreferredLanguage(user.id, v);
+                }
+              },
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.palette_outlined),
+            title: Text(l10n.themeMode),
+            trailing: DropdownButton<ThemeMode>(
+              value: themeMode,
+              underline: const SizedBox.shrink(),
+              items: [
+                DropdownMenuItem(
+                  value: ThemeMode.system,
+                  child: Text(l10n.themeSystem),
+                ),
+                DropdownMenuItem(
+                  value: ThemeMode.light,
+                  child: Text(l10n.themeLight),
+                ),
+                DropdownMenuItem(
+                  value: ThemeMode.dark,
+                  child: Text(l10n.themeDark),
+                ),
+              ],
+              onChanged: (mode) {
+                if (mode != null) {
+                  ref.read(themeModeProvider.notifier).setThemeMode(mode);
+                }
+              },
+            ),
           ),
           const Divider(),
           ListTile(
