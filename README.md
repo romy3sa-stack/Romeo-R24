@@ -9,6 +9,7 @@ Receipt24 is a mobile-first SaaS platform for digital receipt management. Users 
 | Area | App | URL (production) | Users |
 |------|-----|------------------|-------|
 | Consumer App | `apps/consumer` | app.receipt24.com | Consumers |
+| Web Portal | `apps/web` | app.receipt24.com (SSR) | Consumers / landing |
 | Accountant Portal | `apps/accountant_portal` | accountant.receipt24.com | Accountants |
 | Admin Dashboard | `apps/admin_dashboard` | admin.receipt24.com | Administrators |
 
@@ -42,6 +43,7 @@ Receipt24 is a mobile-first SaaS platform for digital receipt management. Users 
 receipt24/
 ├── apps/
 │   ├── consumer/              # Consumer mobile/web app
+│   ├── web/                   # Next.js SSR web portal (Supabase auth)
 │   ├── accountant_portal/     # Accountant web portal
 │   └── admin_dashboard/       # Super admin dashboard
 ├── packages/
@@ -105,7 +107,17 @@ flutter pub get
 flutter run -d chrome
 ```
 
-### 6. Production deployment
+### 6. Run the Next.js web portal
+
+```bash
+cd apps/web
+cp .env.local.example .env.local
+# Fill in NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY
+npm install
+npm run dev
+```
+
+### 7. Production deployment
 
 See [Deployment Guide](docs/deployment.md) for Supabase setup, Flutter web builds, domain configuration, and CI/CD.
 
