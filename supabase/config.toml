@@ -62,10 +62,16 @@ double_confirm_changes = true
 enable_confirmations = true
 
 [auth.external.google]
-enabled = true
+enabled = false
+# Enable in production via Supabase Dashboard → Authentication → Providers
+# client_id = "env(GOOGLE_CLIENT_ID)"
+# secret = "env(GOOGLE_CLIENT_SECRET)"
 
 [auth.external.apple]
-enabled = true
+enabled = false
+# Enable in production via Supabase Dashboard → Authentication → Providers
+# client_id = "env(APPLE_CLIENT_ID)"
+# secret = "env(APPLE_CLIENT_SECRET)"
 
 [edge_runtime]
 enabled = true

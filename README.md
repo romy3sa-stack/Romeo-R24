@@ -147,6 +147,7 @@ bash scripts/deploy-supabase.sh
 - [Storage Structure](docs/storage-structure.md)
 - [Environments](docs/environments.md)
 - [Deployment Guide](docs/deployment.md)
+- [Supabase Setup](docs/supabase-setup.md)
 - [Phase 1-2 Testing Checklist](docs/testing-checklist-phase1-2.md)
 - [Phase 8 Testing Checklist](docs/testing-checklist-phase8.md)
 - [Phase 9 Testing Checklist](docs/testing-checklist-phase9.md)
