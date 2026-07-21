@@ -7,6 +7,7 @@ import '../../../../core/auth/auth_providers.dart';
 import '../../../../core/l10n/locale_provider.dart';
 import '../../../../core/widgets/receipt24_widgets.dart';
 import '../../providers/receipt_providers.dart';
+import '../../warranties/providers/warranty_return_providers.dart';
 
 class HomeShell extends StatefulWidget {
   const HomeShell({super.key, required this.child});
@@ -90,7 +91,10 @@ class HomeScreen extends ConsumerWidget {
     return Scaffold(
       body: SafeArea(
         child: RefreshIndicator(
-          onRefresh: () async => ref.invalidate(homeStatsProvider),
+          onRefresh: () async {
+            ref.invalidate(homeStatsProvider);
+            ref.invalidate(warrantyReturnStatsProvider);
+          },
           child: ListView(
             padding: const EdgeInsets.all(Receipt24Spacing.md),
             children: [
@@ -161,12 +165,14 @@ class HomeScreen extends ConsumerWidget {
                       value: '${stats['activeWarranties'] ?? 0}',
                       icon: Icons.verified_outlined,
                       color: const Color(Receipt24Colors.success),
+                      onTap: () => context.push('/warranties'),
                     ),
                     StatCard(
                       label: l10n.returnDeadlines,
                       value: '${stats['returnDeadlines'] ?? 0}',
                       icon: Icons.assignment_return_outlined,
                       color: const Color(Receipt24Colors.warning),
+                      onTap: () => context.push('/warranties'),
                     ),
                   ],
                 ),

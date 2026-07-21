@@ -19,6 +19,12 @@ import '../../features/receipts/presentation/screens/receipt_detail_screen.dart'
 import '../../features/receipts/presentation/screens/receipt_review_screen.dart';
 import '../../features/receipts/presentation/screens/receipt_wallet_screen.dart';
 import '../../features/receipts/presentation/screens/scan_hub_screen.dart';
+import '../../features/insights/presentation/screens/insights_screen.dart';
+import '../../features/warranties/presentation/screens/add_return_screen.dart';
+import '../../features/warranties/presentation/screens/add_warranty_screen.dart';
+import '../../features/warranties/presentation/screens/return_detail_screen.dart';
+import '../../features/warranties/presentation/screens/warranties_returns_hub_screen.dart';
+import '../../features/warranties/presentation/screens/warranty_detail_screen.dart';
 import '../auth/auth_providers.dart';
 import '../auth/auth_state.dart';
 
@@ -130,6 +136,34 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           receiptId: state.pathParameters['id']!,
         ),
       ),
+      GoRoute(
+        path: '/warranties',
+        builder: (context, state) => const WarrantiesReturnsHubScreen(),
+      ),
+      GoRoute(
+        path: '/warranties/add/:receiptId',
+        builder: (context, state) => AddWarrantyScreen(
+          receiptId: state.pathParameters['receiptId']!,
+        ),
+      ),
+      GoRoute(
+        path: '/warranties/:id',
+        builder: (context, state) => WarrantyDetailScreen(
+          warrantyId: state.pathParameters['id']!,
+        ),
+      ),
+      GoRoute(
+        path: '/returns/add/:receiptId',
+        builder: (context, state) => AddReturnScreen(
+          receiptId: state.pathParameters['receiptId']!,
+        ),
+      ),
+      GoRoute(
+        path: '/returns/:id',
+        builder: (context, state) => ReturnDetailScreen(
+          returnId: state.pathParameters['id']!,
+        ),
+      ),
       ShellRoute(
         builder: (context, state, child) => HomeShell(child: child),
         routes: [
@@ -147,7 +181,7 @@ final appRouterProvider = Provider<GoRouter>((ref) {
           ),
           GoRoute(
             path: '/home/insights',
-            builder: (context, state) => const InsightsPlaceholderScreen(),
+            builder: (context, state) => const InsightsScreen(),
           ),
           GoRoute(
             path: '/home/profile',

@@ -99,7 +99,9 @@ flutter run
 | Phase 4 | ✅ Complete | Consumer dashboard, receipt wallet, details |
 | Phase 5 | ✅ Complete | Camera, upload, PDF, manual, OCR review (mock OCR) |
 | Phase 6 | ✅ Complete | Expense categories, classification, duplicate review |
-| Phase 7+ | ⏳ Pending | Insights, warranties, accountant portal, etc. |
+| Phase 7 | ✅ Complete | Spending insights, charts, alerts, recurring detection |
+| Phase 8 | ✅ Complete | Warranties, returns, reminders, deadline tracking |
+| Phase 9+ | ⏳ Pending | Accountant portal, notifications, subscriptions, etc. |
 
 ## Documentation
 
@@ -110,6 +112,7 @@ flutter run
 - [Storage Structure](docs/storage-structure.md)
 - [Environments](docs/environments.md)
 - [Phase 1-2 Testing Checklist](docs/testing-checklist-phase1-2.md)
+- [Phase 8 Testing Checklist](docs/testing-checklist-phase8.md)
 
 ## Security
 

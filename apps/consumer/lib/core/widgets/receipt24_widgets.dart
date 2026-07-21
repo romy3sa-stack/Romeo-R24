@@ -201,37 +201,43 @@ class StatCard extends StatelessWidget {
     required this.value,
     required this.icon,
     this.color,
+    this.onTap,
   });
 
   final String label;
   final String value;
   final IconData icon;
   final Color? color;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(Receipt24Spacing.md),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon, color: color ?? theme.colorScheme.secondary, size: 24),
-            const SizedBox(height: Receipt24Spacing.sm),
-            Text(
-              value,
-              style: theme.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(Receipt24Spacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Icon(icon, color: color ?? theme.colorScheme.secondary, size: 24),
+              const SizedBox(height: Receipt24Spacing.sm),
+              Text(
+                value,
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            Text(
-              label,
-              style: theme.textTheme.bodySmall?.copyWith(
-                color: const Color(Receipt24Colors.textSecondary),
+              Text(
+                label,
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: const Color(Receipt24Colors.textSecondary),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

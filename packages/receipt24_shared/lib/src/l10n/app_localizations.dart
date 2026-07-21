@@ -180,6 +180,38 @@ class AppLocalizations {
   String get increase => t(L10nKeys.increase);
   String get decrease => t(L10nKeys.decrease);
   String get vsLastMonth => t(L10nKeys.vsLastMonth);
+  String get warrantiesAndReturns => t(L10nKeys.warrantiesAndReturns);
+  String get warranties => t(L10nKeys.warranties);
+  String get returns => t(L10nKeys.returns);
+  String get addWarranty => t(L10nKeys.addWarranty);
+  String get addReturn => t(L10nKeys.addReturn);
+  String get warrantyDetails => t(L10nKeys.warrantyDetails);
+  String get returnDetails => t(L10nKeys.returnDetails);
+  String get warrantyPeriod => t(L10nKeys.warrantyPeriod);
+  String get warrantyExpiry => t(L10nKeys.warrantyExpiry);
+  String get daysRemaining => t(L10nKeys.daysRemaining);
+  String get expired => t(L10nKeys.expired);
+  String get expiringSoon => t(L10nKeys.expiringSoon);
+  String get warrantyStatus => t(L10nKeys.warrantyStatus);
+  String get returnStatus => t(L10nKeys.returnStatus);
+  String get claimReference => t(L10nKeys.claimReference);
+  String get startClaim => t(L10nKeys.startClaim);
+  String get updateStatus => t(L10nKeys.updateStatus);
+  String get reminderSettings => t(L10nKeys.reminderSettings);
+  String get remindersEnabled => t(L10nKeys.remindersEnabled);
+  String get remindersDisabled => t(L10nKeys.remindersDisabled);
+  String get returnDeadline => t(L10nKeys.returnDeadline);
+  String get returnReason => t(L10nKeys.returnReason);
+  String get refundAmount => t(L10nKeys.refundAmount);
+  String get merchantNotes => t(L10nKeys.merchantNotes);
+  String get noWarranties => t(L10nKeys.noWarranties);
+  String get noReturns => t(L10nKeys.noReturns);
+  String get selectProduct => t(L10nKeys.selectProduct);
+  String get warrantySaved => t(L10nKeys.warrantySaved);
+  String get returnSaved => t(L10nKeys.returnSaved);
+  String get saveWarranty => t(L10nKeys.saveWarranty);
+  String get recordReturn => t(L10nKeys.recordReturn);
+  String get viewWarranty => t(L10nKeys.viewWarranty);
 
   static final Map<String, Map<String, String>> _translations = {
     'en': _en,
@@ -358,6 +390,38 @@ const _en = {
   'increase': 'increase',
   'decrease': 'decrease',
   'vsLastMonth': 'compared to last month',
+  'warrantiesAndReturns': 'Warranties & returns',
+  'warranties': 'Warranties',
+  'returns': 'Returns',
+  'addWarranty': 'Add warranty',
+  'addReturn': 'Record return',
+  'warrantyDetails': 'Warranty details',
+  'returnDetails': 'Return details',
+  'warrantyPeriod': 'Warranty period (days)',
+  'warrantyExpiry': 'Warranty expires',
+  'daysRemaining': 'days remaining',
+  'expired': 'Expired',
+  'expiringSoon': 'Expiring soon',
+  'warrantyStatus': 'Warranty status',
+  'returnStatus': 'Return status',
+  'claimReference': 'Claim reference',
+  'startClaim': 'Start claim',
+  'updateStatus': 'Update status',
+  'reminderSettings': 'Reminder settings',
+  'remindersEnabled': 'Reminders enabled',
+  'remindersDisabled': 'Reminders disabled',
+  'returnDeadline': 'Return deadline',
+  'returnReason': 'Reason for return',
+  'refundAmount': 'Refund amount',
+  'merchantNotes': 'Merchant response',
+  'noWarranties': 'No warranties tracked yet',
+  'noReturns': 'No returns recorded yet',
+  'selectProduct': 'Select product',
+  'warrantySaved': 'Warranty saved',
+  'saveWarranty': 'Save warranty',
+  'returnSaved': 'Return recorded',
+  'recordReturn': 'Record return',
+  'viewWarranty': 'View warranty',
 };
 
 const _fr = {

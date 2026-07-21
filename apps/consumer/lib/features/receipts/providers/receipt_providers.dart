@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:receipt24_shared/receipt24_shared.dart';
 
 import '../../../core/auth/auth_providers.dart';
+import '../../warranties/providers/warranty_return_providers.dart';
 import 'ocr_service.dart';
 import 'receipt_service.dart';
 
@@ -51,7 +52,13 @@ final emailForwardingProvider = FutureProvider.autoDispose<String?>((ref) async 
 final homeStatsProvider = FutureProvider.autoDispose<Map<String, dynamic>>((ref) async {
   final user = ref.watch(currentUserProvider);
   if (user == null) return {};
-  return ref.read(authServiceProvider).getHomeStats(user.id);
+  final baseStats = await ref.read(authServiceProvider).getHomeStats(user.id);
+  final warrantyStats = await ref.read(warrantyReturnStatsProvider.future);
+  return {
+    ...baseStats,
+    'activeWarranties': warrantyStats['warranties'] ?? 0,
+    'returnDeadlines': warrantyStats['returns'] ?? 0,
+  };
 });
 
 /// Holds pending OCR data between capture and review screens.

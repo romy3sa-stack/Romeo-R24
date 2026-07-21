@@ -166,4 +166,38 @@ abstract final class L10nKeys {
   static const increase = 'increase';
   static const decrease = 'decrease';
   static const vsLastMonth = 'vsLastMonth';
+
+  // Warranties & returns
+  static const warrantiesAndReturns = 'warrantiesAndReturns';
+  static const warranties = 'warranties';
+  static const returns = 'returns';
+  static const addWarranty = 'addWarranty';
+  static const addReturn = 'addReturn';
+  static const warrantyDetails = 'warrantyDetails';
+  static const returnDetails = 'returnDetails';
+  static const warrantyPeriod = 'warrantyPeriod';
+  static const warrantyExpiry = 'warrantyExpiry';
+  static const daysRemaining = 'daysRemaining';
+  static const expired = 'expired';
+  static const expiringSoon = 'expiringSoon';
+  static const warrantyStatus = 'warrantyStatus';
+  static const returnStatus = 'returnStatus';
+  static const claimReference = 'claimReference';
+  static const startClaim = 'startClaim';
+  static const updateStatus = 'updateStatus';
+  static const reminderSettings = 'reminderSettings';
+  static const remindersEnabled = 'remindersEnabled';
+  static const remindersDisabled = 'remindersDisabled';
+  static const returnDeadline = 'returnDeadline';
+  static const returnReason = 'returnReason';
+  static const refundAmount = 'refundAmount';
+  static const merchantNotes = 'merchantNotes';
+  static const noWarranties = 'noWarranties';
+  static const noReturns = 'noReturns';
+  static const selectProduct = 'selectProduct';
+  static const warrantySaved = 'warrantySaved';
+  static const saveWarranty = 'saveWarranty';
+  static const returnSaved = 'returnSaved';
+  static const recordReturn = 'recordReturn';
+  static const viewWarranty = 'viewWarranty';
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:receipt24_shared/receipt24_shared.dart';
 
 import '../../../../core/auth/auth_providers.dart';
@@ -41,6 +42,13 @@ class ProfileScreen extends ConsumerWidget {
                 }
               },
             ),
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.verified_outlined),
+            title: Text(l10n.warrantiesAndReturns),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/warranties'),
           ),
           const Divider(),
           ListTile(

@@ -94,6 +94,36 @@ class ReceiptDetailScreen extends ConsumerWidget {
                   )),
               if (receipt.notes != null)
                 _DetailTile(label: 'Notes', value: receipt.notes!),
+              const Divider(),
+              Text(l10n.warrantiesAndReturns,
+                  style: Theme.of(context).textTheme.titleSmall),
+              const SizedBox(height: Receipt24Spacing.sm),
+              Row(
+                children: [
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () =>
+                          context.push('/warranties/add/$receiptId'),
+                      icon: const Icon(Icons.verified_outlined),
+                      label: Text(l10n.addWarranty),
+                    ),
+                  ),
+                  const SizedBox(width: Receipt24Spacing.sm),
+                  Expanded(
+                    child: OutlinedButton.icon(
+                      onPressed: () =>
+                          context.push('/returns/add/$receiptId'),
+                      icon: const Icon(Icons.assignment_return_outlined),
+                      label: Text(l10n.recordReturn),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: Receipt24Spacing.sm),
+              TextButton(
+                onPressed: () => context.push('/warranties'),
+                child: Text(l10n.warrantiesAndReturns),
+              ),
             ],
           );
         },
