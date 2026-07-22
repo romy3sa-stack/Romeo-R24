@@ -69,7 +69,7 @@ serve(async (req) => {
     const body: SendNotificationRequest = await req.json();
     const {
       userId,
-      notificationType,
+      notificationType = 'general',
       title,
       message,
       relatedRecordType,
@@ -78,6 +78,16 @@ serve(async (req) => {
       templateKey,
       templateVars = {},
     } = body;
+
+    if (!userId || !title || !message) {
+      return new Response(
+        JSON.stringify({ error: 'userId, title, and message are required' }),
+        {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+        },
+      );
+    }
 
     const { data: notification, error } = await supabase
       .from('notifications')
@@ -160,7 +170,8 @@ serve(async (req) => {
       },
     );
   } catch (error) {
-    return new Response(JSON.stringify({ error: String(error) }), {
+    const message = error instanceof Error ? error.message : String(error);
+    return new Response(JSON.stringify({ error: message }), {
       status: 500,
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
     });

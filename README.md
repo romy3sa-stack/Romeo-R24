@@ -121,6 +121,8 @@ npm run dev
 
 See [Deployment Guide](docs/deployment.md) for Supabase setup, Flutter web builds, domain configuration, and CI/CD.
 
+**Production status:** [docs/production-status.md](docs/production-status.md) · Live at https://romeo-r24.vercel.app
+
 ```bash
 # Configure secrets, then:
 bash scripts/inject-env.sh all
