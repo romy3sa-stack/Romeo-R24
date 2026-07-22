@@ -2,6 +2,8 @@
 
 Step-by-step deployment for project **`ivflhhxjqxcskwixaggd`**.
 
+**Live production URL:** https://romeo-r24.vercel.app
+
 ---
 
 ## Part 0 — One-time Supabase settings (before testing login)
@@ -63,7 +65,7 @@ In Vercel project settings → Environment Variables:
 
 ### 3. Deploy
 
-Click **Deploy**. Vercel gives you a URL like `https://romeo-r24-xxx.vercel.app`.
+Click **Deploy**. Vercel gives you a URL like `https://romeo-r24.vercel.app` (current production).
 
 ---
 
@@ -75,8 +77,8 @@ Open: **https://supabase.com/dashboard/project/ivflhhxjqxcskwixaggd/auth/url-con
 
 | Field | Value |
 |-------|-------|
-| Site URL | `https://your-app.vercel.app` |
-| Redirect URLs | `https://your-app.vercel.app/**` |
+| Site URL | `https://romeo-r24.vercel.app` |
+| Redirect URLs | `https://romeo-r24.vercel.app/**` |
 
 ### 2. Create a test user
 
