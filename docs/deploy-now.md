@@ -2,7 +2,8 @@
 
 Step-by-step deployment for project **`ivflhhxjqxcskwixaggd`**.
 
-**Live production URL:** https://romeo-r24.vercel.app
+**Live production URL:** https://romeo-r24.vercel.app  
+**Custom domain (in progress):** https://app.receipt24.com — see [custom-domain.md](custom-domain.md)
 
 ---
 
@@ -104,6 +105,12 @@ Open: **https://supabase.com/dashboard/project/ivflhhxjqxcskwixaggd/auth/users**
 | Users | https://supabase.com/dashboard/project/ivflhhxjqxcskwixaggd/auth/users |
 | Vercel new project | https://vercel.com/new |
 | GitHub repo | https://github.com/romy3sa-stack/Romeo-R24 |
+
+---
+
+## Optional — Custom domain
+
+To use **app.receipt24.com** instead of the `.vercel.app` URL, follow [custom-domain.md](custom-domain.md).
 
 ---
 
