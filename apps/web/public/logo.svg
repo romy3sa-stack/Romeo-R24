@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" fill="none" role="img" aria-label="Receipt24  Tax refund made simple">
+  <g transform="translate(8, 14)">
+    <rect width="112" height="112" rx="18" fill="#001A4D"/>
+    <path d="M34 28h44c4 0 7 3 7 7v48c0 4-3 7-7 7H34c-4 0-7-3-7-7V35c0-4 3-7 7-7z" fill="white"/>
+    <path d="M72 28l6 6v-3c0-4-3-7-7-7h-3z" fill="#E8EEF5"/>
+    <path d="M27 75h58l-3 4-3-4-3 4-3-4-3 4-3-4-3 4-3-4-3 4-3-4-3 4-3-4-3 4-3-4z" fill="white"/>
+    <circle cx="56" cy="41" r="12" fill="#4CAF50"/>
+    <path d="M51 41l4 4 8-8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="44" y="62" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="bold" fill="#4CAF50">$</text>
+    <rect x="64" y="54" width="18" height="2.5" rx="1.25" fill="#B0BEC5"/>
+    <rect x="64" y="60" width="14" height="2.5" rx="1.25" fill="#B0BEC5"/>
+    <path d="M39 78a32 32 0 0 1 64 0" stroke="#4CAF50" stroke-width="4" stroke-linecap="round" fill="none"/>
+    <path d="M103 78l5-5v10z" fill="#4CAF50"/>
+  </g>
+  <text x="136" y="72" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="700">
+    <tspan fill="#001A4D">receipt</tspan><tspan fill="#4CAF50">24</tspan>
+  </text>
+  <text x="136" y="102" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="500" letter-spacing="0.28em" fill="#001A4D" opacity="0.75">
+    TAX REFUND MADE SIMPLE
+  </text>
+</svg>

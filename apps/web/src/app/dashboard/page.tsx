@@ -1,3 +1,4 @@
+import { Logo } from '@/components/logo';
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
@@ -22,9 +23,7 @@ export default async function DashboardPage() {
     <div className="min-h-full bg-[#F5F7FA]">
       <header className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
-          <Link href="/" className="text-xl font-bold text-[#001A4D]">
-            Receipt24
-          </Link>
+          <Logo variant="compact" href="/" />
           <form action="/auth/signout" method="post">
             <button
               type="submit"

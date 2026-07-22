@@ -1,3 +1,4 @@
+import { Logo } from '@/components/logo';
 import { createClient } from '@/lib/supabase/server';
 import Link from 'next/link';
 
@@ -10,7 +11,7 @@ export default async function HomePage() {
   return (
     <div className="flex min-h-full flex-col bg-[#001A4D] text-white">
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-        <span className="text-xl font-bold">Receipt24</span>
+        <Logo variant="compact" theme="light" />
         <nav className="flex items-center gap-4">
           {user ? (
             <Link
@@ -31,7 +32,8 @@ export default async function HomePage() {
       </header>
 
       <main className="mx-auto flex flex-1 w-full max-w-6xl flex-col items-start justify-center px-6 py-20">
-        <p className="text-sm font-medium uppercase tracking-widest text-[#00B4D8]">
+        <Logo variant="full" href="" theme="light" className="mb-8" />
+        <p className="text-sm font-medium uppercase tracking-widest text-[#4CAF50]">
           Digital receipt management
         </p>
         <h1 className="mt-4 max-w-2xl text-5xl font-bold leading-tight">
