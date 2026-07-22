@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 
 type LogoVariant = 'full' | 'compact' | 'icon';
@@ -11,10 +10,10 @@ type LogoProps = {
   theme?: 'light' | 'dark';
 };
 
-const sizes: Record<LogoVariant, { width: number; height: number }> = {
-  full: { width: 260, height: 70 },
-  compact: { width: 180, height: 48 },
-  icon: { width: 40, height: 40 },
+const sizeClasses: Record<LogoVariant, string> = {
+  full: 'h-[70px] w-auto max-w-[260px]',
+  compact: 'h-10 w-auto max-w-[180px]',
+  icon: 'h-10 w-10',
 };
 
 export function Logo({
@@ -23,7 +22,6 @@ export function Logo({
   className = '',
   theme = 'dark',
 }: LogoProps) {
-  const { width, height } = sizes[variant];
   const src =
     variant === 'icon'
       ? '/logo-icon.svg'
@@ -32,13 +30,13 @@ export function Logo({
         : '/logo.svg';
 
   const image = (
-    <Image
+    // eslint-disable-next-line @next/next/no-img-element -- SVG brand assets; next/image blocks SVG by default
+    <img
       src={src}
       alt="Receipt24 — Tax refund made simple"
-      width={width}
-      height={height}
-      priority={variant === 'full'}
-      className={`h-auto w-auto ${className}`}
+      width={variant === 'icon' ? 40 : variant === 'full' ? 260 : 180}
+      height={variant === 'icon' ? 40 : variant === 'full' ? 70 : 48}
+      className={`${sizeClasses[variant]} ${className}`}
     />
   );
 
