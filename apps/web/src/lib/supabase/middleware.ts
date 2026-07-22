@@ -1,15 +1,29 @@
 import { createServerClient } from '@supabase/ssr';
 import { NextResponse, type NextRequest } from 'next/server';
 
-import { getSupabaseKey, getSupabaseUrl } from './env';
+import { tryGetSupabaseConfig } from './env';
+
+function redirectToLogin(request: NextRequest) {
+  const url = request.nextUrl.clone();
+  url.pathname = '/login';
+  url.searchParams.set('redirect', request.nextUrl.pathname);
+  return NextResponse.redirect(url);
+}
 
 export async function updateSession(request: NextRequest) {
-  let supabaseResponse = NextResponse.next({ request });
+  const config = tryGetSupabaseConfig();
+  if (!config) {
+    // Missing env vars on Vercel — avoid crashing middleware (500).
+    if (request.nextUrl.pathname.startsWith('/dashboard')) {
+      return redirectToLogin(request);
+    }
+    return NextResponse.next({ request });
+  }
 
-  const supabase = createServerClient(
-    getSupabaseUrl(),
-    getSupabaseKey(),
-    {
+  try {
+    let supabaseResponse = NextResponse.next({ request });
+
+    const supabase = createServerClient(config.url, config.key, {
       cookies: {
         getAll() {
           return request.cookies.getAll();
@@ -24,29 +38,29 @@ export async function updateSession(request: NextRequest) {
           );
         },
       },
-    },
-  );
+    });
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  if (
-    !user &&
-    request.nextUrl.pathname.startsWith('/dashboard')
-  ) {
-    const url = request.nextUrl.clone();
-    url.pathname = '/login';
-    url.searchParams.set('redirect', request.nextUrl.pathname);
-    return NextResponse.redirect(url);
+    if (!user && request.nextUrl.pathname.startsWith('/dashboard')) {
+      return redirectToLogin(request);
+    }
+
+    if (user && request.nextUrl.pathname === '/login') {
+      const url = request.nextUrl.clone();
+      url.pathname = '/dashboard';
+      url.searchParams.delete('redirect');
+      return NextResponse.redirect(url);
+    }
+
+    return supabaseResponse;
+  } catch {
+    // Supabase unreachable or misconfigured — serve public pages, protect dashboard.
+    if (request.nextUrl.pathname.startsWith('/dashboard')) {
+      return redirectToLogin(request);
+    }
+    return NextResponse.next({ request });
   }
-
-  if (user && request.nextUrl.pathname === '/login') {
-    const url = request.nextUrl.clone();
-    url.pathname = '/dashboard';
-    url.searchParams.delete('redirect');
-    return NextResponse.redirect(url);
-  }
-
-  return supabaseResponse;
 }

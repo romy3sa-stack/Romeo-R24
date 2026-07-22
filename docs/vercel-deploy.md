@@ -107,7 +107,23 @@ Also add for local dev (optional):
 | Issue | Fix |
 |-------|-----|
 | `404: NOT_FOUND` on every page | Clear Output Directory in Vercel settings; redeploy (see above) |
+| `500: MIDDLEWARE_INVOCATION_FAILED` | Add both env vars below, then **Redeploy** (vars are baked in at build time) |
 | Build fails on Vercel | Ensure Root Directory is `apps/web` or use root `vercel.json` |
 | Login redirects back to login | Add Vercel URL to Supabase redirect URLs |
 | "Email not confirmed" | Auto-confirm user or disable email confirmation |
 | 404 on `/dashboard` only | Redeploy after env vars are set |
+
+### Fix 500 MIDDLEWARE_INVOCATION_FAILED
+
+This means the Next.js middleware crashed — almost always **missing environment variables**.
+
+1. Vercel → **Settings** → **Environment Variables**
+2. Add **both** (names must match exactly):
+
+| Name | Value |
+|------|-------|
+| `NEXT_PUBLIC_SUPABASE_URL` | `https://ivflhhxjqxcskwixaggd.supabase.co` |
+| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | `sb_publishable_nO_uw8hpp5ZiTj3MbNPWJw_muf6hHVs` |
+
+3. Apply to **Production**, **Preview**, and **Development**
+4. **Deployments** → **Redeploy** (required after adding env vars)
